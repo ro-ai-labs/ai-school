@@ -1,0 +1,37 @@
+global:
+  site_title: "AI School"
+  site_description: "Free AI Literacy for Everybody"
+  language_name: "English"
+  language_code: "en"
+  switch_language: "Ro"
+
+nav:
+  home: "Home"
+  articles: "Articles"
+  about: "About"
+
+hero:
+  title: "Free AI Literacy for Everybody"
+  subtitle: "Learn to work with AI effectively, responsibly, and on your own terms. No paywalls. No upsells. Just practical knowledge."
+  cta: "Read the Articles"
+
+articles:
+  title: "Articles"
+  read_more: "Read article"
+  minutes_read: "min read"
+  published: "Published"
+  series_label: "Part of the GenAI School series"
+  all_articles: "All Articles"
+  related: "Related Articles"
+  previous: "Previous in series"
+  next: "Next in series"
+  share: "Share this article"
+
+about:
+  title: "About"
+
+footer:
+  tagline: "Free AI literacy, powered by the SPARKS-SIX framework."
+  follow: "Follow on LinkedIn"
+  copyright: "AI School. All content is free to use and share."
+  built_with: "Built with care in Bucharest."

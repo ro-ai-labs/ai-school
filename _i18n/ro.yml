@@ -1,0 +1,37 @@
+global:
+  site_title: "AI School"
+  site_description: "AI Literacy gratuit pentru toata lumea"
+  language_name: "Romana"
+  language_code: "ro"
+  switch_language: "En"
+
+nav:
+  home: "Acasa"
+  articles: "Articole"
+  about: "Despre"
+
+hero:
+  title: "AI Literacy gratuit pentru toata lumea"
+  subtitle: "Invata sa lucrezi cu AI eficient, responsabil si in termenii tai. Fara paywall. Fara upsell. Doar knowledge practic."
+  cta: "Citeste Articolele"
+
+articles:
+  title: "Articole"
+  read_more: "Citeste articolul"
+  minutes_read: "min lectura"
+  published: "Publicat"
+  series_label: "Parte din seria GenAI School"
+  all_articles: "Toate Articolele"
+  related: "Articole Similare"
+  previous: "Anteriorul din serie"
+  next: "Urmatorul din serie"
+  share: "Share this article"
+
+about:
+  title: "Despre"
+
+footer:
+  tagline: "AI literacy gratuit, powered by framework-ul SPARKS-SIX."
+  follow: "Follow pe LinkedIn"
+  copyright: "AI School. Tot content-ul este free to use and share."
+  built_with: "Built with care in Bucharest."
