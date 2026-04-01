@@ -1,0 +1,20 @@
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="{{ '/' | relative_url }}" class="nav-logo">
+      <span class="nav-logo-text">AI School</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <div class="nav-links">
+      <a href="{{ '/' | relative_url }}" class="nav-link">{% t nav.home %}</a>
+      <a href="{{ '/articles/' | relative_url }}" class="nav-link">{% t nav.articles %}</a>
+      <a href="{{ '/about/' | relative_url }}" class="nav-link">{% t nav.about %}</a>
+      {% include language-switcher.html %}
+    </div>
+  </div>
+</nav>

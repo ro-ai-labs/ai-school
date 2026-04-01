@@ -1,0 +1,15 @@
+<div class="language-switcher">
+  {% if site.lang == "en" %}
+    <a href="{{ site.url }}/ro{{ page.url }}" class="lang-toggle" aria-label="Switch to Romanian">
+      <span class="lang-current">En</span>
+      <span class="lang-separator">/</span>
+      <span class="lang-other">Ro</span>
+    </a>
+  {% else %}
+    <a href="{{ site.url }}/en{{ page.url }}" class="lang-toggle" aria-label="Switch to English">
+      <span class="lang-current">Ro</span>
+      <span class="lang-separator">/</span>
+      <span class="lang-other">En</span>
+    </a>
+  {% endif %}
+</div>

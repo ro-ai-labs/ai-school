@@ -1,0 +1,25 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">AI School</span>
+      <p class="footer-tagline">{% t footer.tagline %}</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="{{ '/' | relative_url }}">{% t nav.home %}</a>
+      <a href="{{ '/articles/' | relative_url }}">{% t nav.articles %}</a>
+      <a href="{{ '/about/' | relative_url }}">{% t nav.about %}</a>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/mihaicvasnievschi/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        {% t footer.follow %}
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ site.time | date: '%Y' }} {% t footer.copyright %}</p>
+      <p class="footer-built">{% t footer.built_with %}</p>
+    </div>
+  </div>
+</footer>
