@@ -1,0 +1,29 @@
+title: AI School
+description: "Free AI Literacy for Everybody"
+url: "https://ai-school.ro"
+baseurl: ""
+
+# Languages
+languages: ["en", "ro"]
+default_lang: "en"
+exclude_from_localizations: ["assets", "CNAME"]
+
+# Permalinks
+permalink: /articles/:slug/
+
+# Build
+markdown: kramdown
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - docs/
+  - framework/
+  - "AI School/"
+  - node_modules/
+  - vendor/
