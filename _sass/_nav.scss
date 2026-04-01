@@ -1,0 +1,131 @@
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: $color-nav-bg;
+  border-bottom: 1px solid $color-border;
+  height: $nav-height;
+}
+
+.nav-inner {
+  max-width: $site-width;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.nav-logo {
+  text-decoration: none;
+
+  &:hover { text-decoration: none; }
+}
+
+.nav-logo-text {
+  font-family: $font-heading;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: $color-text;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $color-text-light;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-text;
+    text-decoration: none;
+  }
+}
+
+.language-switcher {
+  margin-left: $space-md;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-xs $space-sm;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: $color-text;
+  text-decoration: none;
+
+  &:hover {
+    border-color: $color-primary;
+    text-decoration: none;
+  }
+}
+
+.lang-current {
+  font-weight: 600;
+}
+
+.lang-separator {
+  margin: 0 2px;
+  color: $color-border;
+}
+
+.lang-other {
+  color: $color-text-light;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $space-sm;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: $color-text;
+  transition: transform 0.2s ease;
+}
+
+@media (max-width: $bp-mobile) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: $nav-height;
+    left: 0;
+    right: 0;
+    background: $color-nav-bg;
+    flex-direction: column;
+    padding: $space-lg;
+    border-bottom: 1px solid $color-border;
+    gap: $space-md;
+  }
+
+  .nav-links--open {
+    display: flex;
+  }
+
+  .language-switcher {
+    margin-left: 0;
+  }
+}

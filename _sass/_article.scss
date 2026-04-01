@@ -1,0 +1,136 @@
+.article-header {
+  text-align: center;
+  padding: $space-xl 0 $space-lg;
+  max-width: $content-width;
+  margin: 0 auto;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-md;
+  font-size: 0.85rem;
+  color: $color-text-light;
+  margin-bottom: $space-md;
+}
+
+.article-meta-separator {
+  color: $color-border;
+}
+
+.article-series-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-primary;
+  margin-bottom: $space-sm;
+}
+
+.article-title {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  margin-bottom: $space-md;
+
+  @media (max-width: $bp-mobile) {
+    font-size: 1.8rem;
+  }
+}
+
+.article-excerpt {
+  font-size: 1.15rem;
+  color: $color-text-light;
+  font-family: $font-heading;
+  font-style: italic;
+}
+
+.article-body {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: 0 $space-lg $space-2xl;
+
+  h2 {
+    margin-top: $space-2xl;
+  }
+
+  blockquote {
+    margin: $space-xl (-$space-md);
+
+    @media (max-width: $bp-mobile) {
+      margin: $space-lg 0;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
+
+.article-footer {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: 0 $space-lg $space-2xl;
+}
+
+.article-share {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding: $space-lg 0;
+  border-top: 1px solid $color-border;
+  font-size: 0.9rem;
+  color: $color-text-light;
+}
+
+.article-share-link {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-xs $space-sm;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: $color-text;
+
+  &:hover {
+    border-color: $color-accent;
+    text-decoration: none;
+  }
+}
+
+.series-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: $space-lg;
+  padding: $space-lg 0;
+  border-top: 1px solid $color-border;
+  margin-top: $space-lg;
+}
+
+.series-nav-item {
+  flex: 1;
+
+  &--next {
+    text-align: right;
+  }
+}
+
+.series-nav-label {
+  font-size: 0.8rem;
+  color: $color-text-light;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: $space-xs;
+}
+
+.series-nav-title {
+  font-family: $font-heading;
+  font-weight: 600;
+  font-size: 1rem;
+}
