@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<div class="container">
+  <div class="content-width" style="padding-top: 3rem;">
+    <h1>{% t articles.title %}</h1>
+  </div>
+
+  <div class="articles-grid">
+    {% assign posts = site.posts | sort: "date" | reverse %}
+    {% for post in posts %}
+      {% include article-card.html post=post %}
+    {% endfor %}
+  </div>
+</div>

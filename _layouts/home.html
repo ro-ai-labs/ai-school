@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">GenAI School</span>
+    <h1 class="hero-title">{% t hero.title %}</h1>
+    <p class="hero-subtitle">{% t hero.subtitle %}</p>
+    <a href="{{ '/articles/' | relative_url }}" class="hero-cta">{% t hero.cta %}</a>
+  </div>
+</section>
+
+<section class="container">
+  <h2>{% t articles.all_articles %}</h2>
+  <div class="articles-grid">
+    {% assign posts = site.posts | sort: "date" | reverse %}
+    {% for post in posts limit:3 %}
+      {% include article-card.html post=post %}
+    {% endfor %}
+  </div>
+</section>
+
+{{ content }}

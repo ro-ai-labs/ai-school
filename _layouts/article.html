@@ -1,0 +1,57 @@
+---
+layout: default
+---
+
+<article>
+  <header class="article-header">
+    {% if page.series %}
+    <span class="article-series-badge">{% t articles.series_label %}</span>
+    {% endif %}
+    <h1 class="article-title">{{ page.title }}</h1>
+    <div class="article-meta">
+      <span>{{ page.author }}</span>
+      <span class="article-meta-separator">&middot;</span>
+      <time>{{ page.date | date: "%B %-d, %Y" }}</time>
+      {% if page.reading_time %}
+      <span class="article-meta-separator">&middot;</span>
+      <span>{{ page.reading_time }} {% t articles.minutes_read %}</span>
+      {% endif %}
+    </div>
+    {% if page.excerpt_text %}
+    <p class="article-excerpt">{{ page.excerpt_text }}</p>
+    {% endif %}
+  </header>
+
+  <div class="article-body">
+    {{ content }}
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-share">
+      <span>{% t articles.share %}</span>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}" target="_blank" rel="noopener" class="article-share-link">LinkedIn</a>
+    </div>
+
+    {% assign sorted_posts = site.posts | sort: "series_order" %}
+    {% if page.series and page.series_order %}
+    <nav class="series-nav">
+      <div class="series-nav-item">
+        {% for post in sorted_posts %}
+          {% if post.series == page.series and post.series_order == page.series_order | minus: 1 %}
+            <div class="series-nav-label">{% t articles.previous %}</div>
+            <a href="{{ post.url }}" class="series-nav-title">{{ post.title }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="series-nav-item series-nav-item--next">
+        {% for post in sorted_posts %}
+          {% if post.series == page.series and post.series_order == page.series_order | plus: 1 %}
+            <div class="series-nav-label">{% t articles.next %}</div>
+            <a href="{{ post.url }}" class="series-nav-title">{{ post.title }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </nav>
+    {% endif %}
+  </footer>
+</article>

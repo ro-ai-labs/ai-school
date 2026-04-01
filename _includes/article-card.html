@@ -1,0 +1,16 @@
+<article class="article-card">
+  {% if include.post.series %}
+  <span class="article-card-series">{{ include.post.series }}</span>
+  {% endif %}
+  <h3 class="article-card-title">
+    <a href="{{ include.post.url }}">{{ include.post.title }}</a>
+  </h3>
+  <p class="article-card-excerpt">{{ include.post.excerpt | strip_html | truncatewords: 30 }}</p>
+  <div class="article-card-meta">
+    <time>{{ include.post.date | date: "%B %-d, %Y" }}</time>
+    {% if include.post.reading_time %}
+    <span>{{ include.post.reading_time }} {% t articles.minutes_read %}</span>
+    {% endif %}
+    <span class="article-card-read">{% t articles.read_more %} &rarr;</span>
+  </div>
+</article>
