@@ -113,6 +113,9 @@ class Checker:
         self.site = site_dir
         self.failures = []
         self.project_count = self.count_projects(projects_file)
+        # Filled while reading pages, compared across languages afterwards.
+        self.ro_alternate_on_en = {}  # inner path -> hreflang "ro" URL declared by the English page
+        self.ro_pages = {}  # inner path -> True when the Romanian page is a "not translated" placeholder
 
     @staticmethod
     def count_projects(projects_file):
@@ -228,6 +231,10 @@ class Checker:
         en_url = ORIGIN + lang_path("en", inner)
         ro_url = ORIGIN + lang_path("ro", inner)
         own_url = ORIGIN + where
+        if lang == "ro":
+            self.ro_pages[inner] = page.untranslated
+        else:
+            self.ro_alternate_on_en[inner] = page.alternates.get("ro")
         if lang == "ro" and page.untranslated:
             want_canonical = en_url
             if "ro" in page.alternates:
@@ -274,6 +281,24 @@ class Checker:
                         f"expected {want} project link(s) with utm_content={placement}, found {utm[placement]}",
                     )
 
+    def check_language_pairs(self):
+        """An English page may name a Romanian alternate only when that page is a real translation."""
+        for inner, declared in sorted(self.ro_alternate_on_en.items()):
+            where = lang_path("en", inner)
+            ro_url = ORIGIN + lang_path("ro", inner)
+            if inner not in self.ro_pages:
+                if declared:
+                    self.fail("hreflang", where, f"declares a Romanian alternate that was not built: {declared}")
+            elif self.ro_pages[inner]:
+                if declared:
+                    self.fail(
+                        "hreflang",
+                        where,
+                        f"declares {declared} as its Romanian version, but that page is an untranslated placeholder",
+                    )
+            elif declared != ro_url:
+                self.fail("hreflang", where, f"hreflang ro should be {ro_url}, found {declared}")
+
     def check_files(self):
         for rel in REQUIRED_FILES:
             if not (self.site / rel).is_file():
@@ -302,6 +327,7 @@ class Checker:
             self.fail("files", str(self.site), "no HTML pages found; is this a built site?")
         for file in pages:
             self.check_page(file)
+        self.check_language_pairs()
         self.check_files()
         return len(pages)
 

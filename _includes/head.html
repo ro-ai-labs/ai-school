@@ -30,7 +30,15 @@
 
 {%- assign en_url = site.url | append: site.baseurl_root | append: page.url -%}
 {%- assign ro_url = site.url | append: site.baseurl_root | append: "/ro" | append: page.url -%}
-{%- if site.lang == "ro" and page.translated != false -%}
+{%- comment -%}
+  _data/untranslated.yml is read by both language builds, so the English page
+  and its Romanian placeholder agree on whether a Romanian version exists.
+{%- endcomment -%}
+{%- assign has_ro_version = true -%}
+{%- if site.data.untranslated.ro contains page.slug -%}
+  {%- assign has_ro_version = false -%}
+{%- endif -%}
+{%- if site.lang == "ro" and has_ro_version -%}
   {%- assign canonical_url = ro_url -%}
 {%- else -%}
   {%- assign canonical_url = en_url -%}
@@ -47,9 +55,9 @@
 <!-- Canonical and language alternates -->
 <link rel="canonical" href="{{ canonical_url }}">
 <link rel="alternate" hreflang="en" href="{{ en_url }}">
-{%- unless page.translated == false %}
+{%- if has_ro_version %}
 <link rel="alternate" hreflang="ro" href="{{ ro_url }}">
-{%- endunless %}
+{%- endif %}
 <link rel="alternate" hreflang="x-default" href="{{ en_url }}">
 
 <!-- Share previews -->

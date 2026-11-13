@@ -4,7 +4,7 @@ permalink: /feed.xml
 ---
 <?xml version="1.0" encoding="utf-8"?>
 {%- comment -%}
-  Atom feed, built once per language. Posts flagged "translated: false" are left out.
+  Atom feed, built once per language. Posts listed in _data/untranslated.yml for this language are left out.
 {%- endcomment %}
 {%- assign origin = site.url | append: site.baseurl %}
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ site.lang }}">
@@ -19,7 +19,7 @@ permalink: /feed.xml
     <uri>https://www.linkedin.com/in/mihaicvasnievschi/</uri>
   </author>
 {%- for post in site.posts limit: 20 %}
-{%- unless post.translated == false %}
+{%- unless site.data.untranslated[site.lang] contains post.slug %}
   <entry>
     <title>{{ post.title | xml_escape }}</title>
     <link href="{{ origin }}{{ post.url }}" rel="alternate" type="text/html"/>

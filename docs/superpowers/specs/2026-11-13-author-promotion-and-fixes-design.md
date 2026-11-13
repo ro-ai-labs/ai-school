@@ -61,7 +61,7 @@ After this change, a reader who finishes an article knows who wrote it and has a
 - Language switcher uses root-relative paths: English at `/…`, Romanian at `/ro/…`.
 - `hreflang` and canonical tags point at real URLs. Untranslated Romanian articles declare the English article as canonical.
 - Series navigation computes previous and next correctly.
-- Untranslated Romanian articles are flagged `translated: false`. Cards and series links for them go to the English article and carry an "in English" tag. The Romanian placeholder page says so plainly and links across.
+- Untranslated Romanian articles are listed in `_data/untranslated.yml`, which both language builds read. Cards and series links for them go to the English article and carry an "in English" tag. The Romanian placeholder page says so plainly and links across.
 - Romanian UI strings get diacritics and lose the stray English. Dates on Romanian pages use Romanian month names.
 - Page titles and descriptions: home gets a descriptive title, articles use their written excerpt.
 - Open Graph and Twitter tags on every page, with a 1200×630 share image.

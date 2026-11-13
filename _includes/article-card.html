@@ -1,15 +1,16 @@
 {%- capture card_href -%}{% include post-href.html post=include.post %}{%- endcapture -%}
-{%- if include.post.translated == false -%}
+{%- assign card_in_english = false -%}
+{%- assign card_link_attrs = "" -%}
+{%- if site.data.untranslated[site.lang] contains include.post.slug -%}
+  {%- assign card_in_english = true -%}
   {%- assign card_link_attrs = ' data-lang-link="en" hreflang="en"' -%}
-{%- else -%}
-  {%- assign card_link_attrs = "" -%}
 {%- endif -%}
 <article class="article-card">
   <div class="article-card-labels">
     {% if include.post.series %}
     <span class="article-card-series">{{ include.post.series }}</span>
     {% endif %}
-    {% if include.post.translated == false %}
+    {% if card_in_english %}
     <span class="article-card-lang">{% t articles.in_english %}</span>
     {% endif %}
   </div>

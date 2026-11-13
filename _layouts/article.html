@@ -3,10 +3,16 @@ layout: default
 ---
 
 {%- comment -%}
-  A post flagged "translated: false" has no text in this language yet. Its page
-  says so and points at the English article, which is also what gets shared.
+  A post listed in _data/untranslated.yml for this language has no text here
+  yet. Its page says so and points at the English article, which is also what
+  gets shared.
 {%- endcomment -%}
-{%- if page.translated == false -%}
+{%- assign untranslated_here = site.data.untranslated[site.lang] -%}
+{%- assign in_english_only = false -%}
+{%- if untranslated_here contains page.slug -%}
+  {%- assign in_english_only = true -%}
+{%- endif -%}
+{%- if in_english_only -%}
   {%- assign share_url = site.url | append: site.baseurl_root | append: page.url -%}
 {%- else -%}
   {%- assign share_url = site.url | append: site.baseurl | append: page.url -%}
@@ -33,7 +39,7 @@ layout: default
   </header>
 
   <div class="article-body">
-    {% if page.translated == false %}
+    {% if in_english_only %}
     <p class="article-untranslated" data-untranslated>
       {% t articles.untranslated_notice %}
       <a href="{{ site.baseurl_root }}{{ page.url }}" data-lang-link="en" hreflang="en">{% t articles.read_in_english %} &rarr;</a>
@@ -66,13 +72,13 @@ layout: default
       <div class="series-nav-item">
         {% if prev_post %}
         <div class="series-nav-label">{% t articles.previous %}</div>
-        <a href="{% include post-href.html post=prev_post %}" class="series-nav-title"{% if prev_post.translated == false %} data-lang-link="en" hreflang="en"{% endif %}>{{ prev_post.title }}</a>
+        <a href="{% include post-href.html post=prev_post %}" class="series-nav-title"{% if untranslated_here contains prev_post.slug %} data-lang-link="en" hreflang="en"{% endif %}>{{ prev_post.title }}</a>
         {% endif %}
       </div>
       <div class="series-nav-item series-nav-item--next">
         {% if next_post %}
         <div class="series-nav-label">{% t articles.next %}</div>
-        <a href="{% include post-href.html post=next_post %}" class="series-nav-title"{% if next_post.translated == false %} data-lang-link="en" hreflang="en"{% endif %}>{{ next_post.title }}</a>
+        <a href="{% include post-href.html post=next_post %}" class="series-nav-title"{% if untranslated_here contains next_post.slug %} data-lang-link="en" hreflang="en"{% endif %}>{{ next_post.title }}</a>
         {% endif %}
       </div>
     </nav>

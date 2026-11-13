@@ -1,0 +1,14 @@
+# Articles that exist only in English so far, listed per language by slug
+# (the post's file name without the date and ".md").
+#
+# While a slug is listed here, that language's cards and series links go to the
+# English article and are tagged "in English", its page shows a short notice,
+# and search engines are told the English page is the real one.
+#
+# To publish a translation: put the text in _i18n/<lang>/_posts/<date>-<slug>.md
+# and delete the slug from this list. Everything else follows from that.
+
+ro:
+  - the-gap
+  - first-contact
+  - scope
