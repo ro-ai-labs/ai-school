@@ -1,16 +1,33 @@
+{%- capture card_href -%}{% include post-href.html post=include.post %}{%- endcapture -%}
+{%- if include.post.translated == false -%}
+  {%- assign card_link_attrs = ' data-lang-link="en" hreflang="en"' -%}
+{%- else -%}
+  {%- assign card_link_attrs = "" -%}
+{%- endif -%}
 <article class="article-card">
-  {% if include.post.series %}
-  <span class="article-card-series">{{ include.post.series }}</span>
-  {% endif %}
+  <div class="article-card-labels">
+    {% if include.post.series %}
+    <span class="article-card-series">{{ include.post.series }}</span>
+    {% endif %}
+    {% if include.post.translated == false %}
+    <span class="article-card-lang">{% t articles.in_english %}</span>
+    {% endif %}
+  </div>
   <h3 class="article-card-title">
-    <a href="{{ include.post.url }}">{{ include.post.title }}</a>
+    <a href="{{ card_href }}"{{ card_link_attrs }}>{{ include.post.title }}</a>
   </h3>
-  <p class="article-card-excerpt">{{ include.post.excerpt | strip_html | truncatewords: 30 }}</p>
+  <p class="article-card-excerpt">
+    {%- if include.post.excerpt_text -%}
+      {{ include.post.excerpt_text }}
+    {%- else -%}
+      {{ include.post.excerpt | strip_html | truncatewords: 30 }}
+    {%- endif -%}
+  </p>
   <div class="article-card-meta">
-    <time>{{ include.post.date | date: "%B %-d, %Y" }}</time>
+    <time datetime="{{ include.post.date | date: '%Y-%m-%d' }}">{% include date.html date=include.post.date %}</time>
     {% if include.post.reading_time %}
     <span>{{ include.post.reading_time }} {% t articles.minutes_read %}</span>
     {% endif %}
-    <span class="article-card-read">{% t articles.read_more %} &rarr;</span>
+    <a class="article-card-read" href="{{ card_href }}"{{ card_link_attrs }} aria-hidden="true" tabindex="-1">{% t articles.read_more %} &rarr;</a>
   </div>
 </article>

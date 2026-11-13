@@ -1,0 +1,11 @@
+{%- comment -%}
+  A date in the page language: "April 1, 2026" or "1 aprilie 2026".
+  Usage: {% include date.html date=post.date %}
+{%- endcomment -%}
+{%- if site.lang == "ro" -%}
+  {%- assign ro_months = "ianuarie,februarie,martie,aprilie,mai,iunie,iulie,august,septembrie,octombrie,noiembrie,decembrie" | split: "," -%}
+  {%- assign month_index = include.date | date: "%-m" | minus: 1 -%}
+  {{- include.date | date: "%-d" }} {{ ro_months[month_index] }} {{ include.date | date: "%Y" -}}
+{%- else -%}
+  {{- include.date | date: "%B %-d, %Y" -}}
+{%- endif -%}

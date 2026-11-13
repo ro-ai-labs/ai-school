@@ -7,9 +7,12 @@ reading_time: 10
 categories: [ai-literacy]
 series: GenAI School
 series_order: 2
-excerpt_text: "Timp de un an, Maria a folosit ChatGPT sa rescrie email-uri. Apoi, intr-o marti, a incetat sa ii ceara sa faca lucruri pentru ea. I-a cerut sa o ajute sa gandeasca."
+excerpt_text: "Timp de un an, Maria a folosit ChatGPT ca să rescrie emailuri. Apoi, într-o marți, a încetat să îi ceară să facă lucruri în locul ei. I-a cerut să o ajute să gândească."
+translated: false
 ---
 
-Traducerea acestui articol va fi disponibila in curand. Pana atunci, puteti citi versiunea in engleza.
-
-Translation of this article coming soon. In the meantime, you can read the English version.
+{% comment %}
+Not translated yet. To publish the Romanian version: put the text here and
+delete the "translated: false" line above. Cards, links and search tags
+then switch to this page on their own.
+{% endcomment %}

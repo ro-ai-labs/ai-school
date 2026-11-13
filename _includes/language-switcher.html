@@ -1,15 +1,19 @@
+{%- comment -%}
+  Root-relative on purpose: English is at /…, Romanian at /ro/…, and the link
+  must work whichever scheme or host the page was loaded from.
+{%- endcomment -%}
 <div class="language-switcher">
-  {% if site.lang == "en" %}
-    <a href="{{ site.url }}/ro{{ page.url }}" class="lang-toggle" aria-label="Switch to Romanian">
-      <span class="lang-current">En</span>
-      <span class="lang-separator">/</span>
-      <span class="lang-other">Ro</span>
-    </a>
-  {% else %}
-    <a href="{{ site.url }}/en{{ page.url }}" class="lang-toggle" aria-label="Switch to English">
+  {% if site.lang == "ro" %}
+    <a href="{{ site.baseurl_root }}{{ page.url }}" class="lang-toggle" hreflang="en" aria-label="Switch to English">
       <span class="lang-current">Ro</span>
       <span class="lang-separator">/</span>
       <span class="lang-other">En</span>
+    </a>
+  {% else %}
+    <a href="{{ site.baseurl_root }}/ro{{ page.url }}" class="lang-toggle" hreflang="ro" aria-label="Switch to Romanian">
+      <span class="lang-current">En</span>
+      <span class="lang-separator">/</span>
+      <span class="lang-other">Ro</span>
     </a>
   {% endif %}
 </div>

@@ -1,6 +1,8 @@
 global:
   site_title: "AI School"
   site_description: "Free AI Literacy for Everybody"
+  home_title: "AI School · Free AI Literacy for Everybody"
+  share_image_alt: "AI School: free AI literacy for everybody, by Mihai Cvasnievschi"
   language_name: "English"
   language_code: "en"
   switch_language: "Ro"
@@ -12,23 +14,57 @@ nav:
 
 hero:
   title: "Free AI Literacy for Everybody"
-  subtitle: "Learn to work with AI effectively, responsibly, and on your own terms. No paywalls. No upsells. Just practical knowledge."
+  subtitle: "Learn to work with AI effectively, responsibly, and on your own terms. No paywalls. No sign-up. Just practical knowledge."
   cta: "Read the Articles"
 
 articles:
   title: "Articles"
+  description: "Every AI School article: the GenAI School series on working with AI effectively and responsibly."
   read_more: "Read article"
   minutes_read: "min read"
   published: "Published"
   series_label: "Part of the GenAI School series"
   all_articles: "All Articles"
+  latest: "Latest articles"
+  view_all: "All articles"
+  in_english: "In English"
+  untranslated_notice: "This article has not been translated yet."
+  read_in_english: "Read it in English"
   related: "Related Articles"
   previous: "Previous in series"
   next: "Next in series"
   share: "Share this article"
 
+projects:
+  title: "Go further"
+  intro: "AI School is free and stays free. It is written by Mihai Cvasnievschi, who also runs the projects below. If the articles helped, this is where the conversation continues."
+  about_title: "What else Mihai does"
+  about_intro: "AI School is one of several projects built around the same idea: helping people and companies use AI well."
+  footer_title: "Also by Mihai Cvasnievschi"
+
+author:
+  title: "About the author"
+  bio: "<strong>Mihai Cvasnievschi</strong> is an AI/ML architect with 25+ years in software and more than 10 years building AI systems that run in production. He writes AI School so that anyone can learn to work with AI, for free."
+  more: "More of his work:"
+  linkedin: "Follow Mihai on LinkedIn"
+
 about:
   title: "About"
+  description: "AI School is a free AI literacy initiative by Mihai Cvasnievschi. Who writes it, why it is free, and what else he does."
+  intro: "AI School is a free AI literacy initiative created by <strong>Mihai Cvasnievschi</strong>, an AI/ML Architect with 25+ years of software development experience and over 10 years building production AI systems."
+  bio_more: "His work covers edge AI, enterprise LLM platforms, RAG and MLOps, always with the same test: does it hold up in production, not only in the demo?"
+  mission_title: "The Mission"
+  mission_gap: "30% of European workers use AI daily. Only 15% have received any training. The EU AI Act now mandates AI literacy for organisations deploying AI systems, with enforcement beginning in 2026."
+  mission_free: "AI School exists to close that gap. Everything here is free: the articles, the framework, the methodology. No paywalls, no paid tiers, no sign-up. The value speaks for itself."
+  framework_title: "SPARKS-SIX"
+  framework_text: "Our articles are grounded in the SPARKS-SIX framework: a six-pillar methodology for working effectively and responsibly with any AI tool. The framework is being released publicly through our article series."
+  connect_title: "Connect"
+  connect_html: 'Follow the journey on <a href="https://www.linkedin.com/in/mihaicvasnievschi/" target="_blank" rel="noopener">LinkedIn</a>, where the original article series is published.'
+
+notfound:
+  title: "Page not found"
+  text: "The page you were looking for is not here. It may have moved, or the link may be wrong."
+  cta: "Back to the home page"
 
 footer:
   tagline: "Free AI literacy, powered by the SPARKS-SIX framework."

@@ -1,0 +1,10 @@
+{%- comment -%}
+  Link target for a post. A post flagged "translated: false" has no text in this
+  language yet, so its link goes to the English article at the site root.
+  Usage: href="{% include post-href.html post=post %}"
+{%- endcomment -%}
+{%- if include.post.translated == false -%}
+  {{- site.baseurl_root }}{{ include.post.url -}}
+{%- else -%}
+  {{- site.baseurl }}{{ include.post.url -}}
+{%- endif -%}

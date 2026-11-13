@@ -1,37 +1,73 @@
 global:
   site_title: "AI School"
-  site_description: "AI Literacy gratuit pentru toata lumea"
-  language_name: "Romana"
+  site_description: "AI Literacy gratuit pentru toată lumea"
+  home_title: "AI School · AI Literacy gratuit pentru toată lumea"
+  share_image_alt: "AI School: AI literacy gratuit pentru toată lumea, de Mihai Cvasnievschi"
+  language_name: "Română"
   language_code: "ro"
   switch_language: "En"
 
 nav:
-  home: "Acasa"
+  home: "Acasă"
   articles: "Articole"
   about: "Despre"
 
 hero:
-  title: "AI Literacy gratuit pentru toata lumea"
-  subtitle: "Invata sa lucrezi cu AI eficient, responsabil si in termenii tai. Fara paywall. Fara upsell. Doar knowledge practic."
-  cta: "Citeste Articolele"
+  title: "AI Literacy gratuit pentru toată lumea"
+  subtitle: "Învață să lucrezi cu AI eficient, responsabil și în felul tău. Fără paywall. Fără cont. Doar cunoștințe practice."
+  cta: "Citește articolele"
 
 articles:
   title: "Articole"
-  read_more: "Citeste articolul"
-  minutes_read: "min lectura"
+  description: "Toate articolele AI School: seria GenAI School despre cum lucrezi cu AI eficient și responsabil."
+  read_more: "Citește articolul"
+  minutes_read: "min de citit"
   published: "Publicat"
   series_label: "Parte din seria GenAI School"
-  all_articles: "Toate Articolele"
-  related: "Articole Similare"
+  all_articles: "Toate articolele"
+  latest: "Cele mai noi articole"
+  view_all: "Toate articolele"
+  in_english: "În engleză"
+  untranslated_notice: "Acest articol nu este încă tradus în română."
+  read_in_english: "Citește-l în engleză"
+  related: "Articole similare"
   previous: "Anteriorul din serie"
-  next: "Urmatorul din serie"
-  share: "Share this article"
+  next: "Următorul din serie"
+  share: "Distribuie articolul"
+
+projects:
+  title: "Mergi mai departe"
+  intro: "AI School este gratuit și rămâne gratuit. Este scris de Mihai Cvasnievschi, care se ocupă și de proiectele de mai jos. Dacă articolele ți-au fost de folos, aici continuă conversația."
+  about_title: "Ce mai face Mihai"
+  about_intro: "AI School este unul dintre mai multe proiecte construite în jurul aceleiași idei: să ajute oamenii și companiile să folosească bine AI."
+  footer_title: "Tot de Mihai Cvasnievschi"
+
+author:
+  title: "Despre autor"
+  bio: "<strong>Mihai Cvasnievschi</strong> este arhitect AI/ML, cu peste 25 de ani în software și peste 10 ani în care a construit sisteme AI care rulează în producție. Scrie AI School pentru ca oricine să poată învăța să lucreze cu AI, gratuit."
+  more: "Alte proiecte ale lui:"
+  linkedin: "Urmărește-l pe Mihai pe LinkedIn"
 
 about:
   title: "Despre"
+  description: "AI School este o inițiativă gratuită de AI literacy a lui Mihai Cvasnievschi. Cine o scrie, de ce este gratuită și ce mai face el."
+  intro: "AI School este o inițiativă gratuită de AI literacy creată de <strong>Mihai Cvasnievschi</strong>, arhitect AI/ML cu peste 25 de ani de experiență în dezvoltare software și peste 10 ani în care a construit sisteme AI de producție."
+  bio_more: "Lucrează cu edge AI, platforme LLM enterprise, RAG și MLOps, mereu cu același test: rezistă în producție, nu doar în demo?"
+  mission_title: "Misiunea"
+  mission_gap: "30% dintre angajații europeni folosesc AI zilnic. Doar 15% au primit vreo formă de training. EU AI Act cere acum AI literacy de la organizațiile care folosesc sisteme AI, iar aplicarea începe în 2026."
+  mission_free: "AI School există ca să închidă acest decalaj. Totul aici este gratuit: articolele, framework-ul, metodologia. Fără paywall, fără abonamente, fără cont. Valoarea vorbește de la sine."
+  framework_title: "SPARKS-SIX"
+  framework_text: "Articolele noastre se bazează pe framework-ul SPARKS-SIX: o metodologie cu șase piloni pentru a lucra eficient și responsabil cu orice instrument AI. Framework-ul este publicat integral prin seria noastră de articole."
+  connect_title: "Contact"
+  connect_html: 'Urmărește proiectul pe <a href="https://www.linkedin.com/in/mihaicvasnievschi/" target="_blank" rel="noopener">LinkedIn</a>, unde este publicată seria originală de articole.'
+
+notfound:
+  title: "Pagina nu a fost găsită"
+  text: "Pagina pe care o cauți nu este aici. Poate a fost mutată sau linkul este greșit."
+  cta: "Înapoi la prima pagină"
 
 footer:
-  tagline: "AI literacy gratuit, powered by framework-ul SPARKS-SIX."
-  follow: "Follow pe LinkedIn"
-  copyright: "AI School. Tot content-ul este free to use and share."
-  built_with: "Built with care in Bucharest."
+  tagline: "AI literacy gratuit, bazat pe framework-ul SPARKS-SIX."
+  follow: "Urmărește pe LinkedIn"
+  copyright: "AI School. Tot conținutul poate fi folosit și distribuit liber."
+  built_with: "Făcut cu grijă în București."
