@@ -12,12 +12,12 @@ excerpt_text: "For a year, Maria used ChatGPT to rewrite emails. Then one Tuesda
 
 For a year, Maria used ChatGPT to rewrite emails.
 
-Maria is a marketing manager at a mid-sized company in Bucharest. If you met her in [the previous article](https://www.linkedin.com/pulse/genai-school-ai-literacy-everybody-gap-mihai-cvasnievschi-icu3f/), you already know the type: sharp, capable, self-taught on AI because nobody else was going to teach her. Subject lines, meeting summaries, the occasional blog outline. She had figured out, through trial and error, how to coax decent results from the machine.
+Maria is a marketing manager at a mid-sized company in Bucharest. If you met her in [the previous article]({{ site.baseurl }}/articles/the-gap/), you already know the type: sharp, capable, self-taught on AI because nobody else was going to teach her. Subject lines, meeting summaries, the occasional blog outline. She had figured out, through trial and error, how to coax decent results from the machine.
 
 Then one Tuesday, she stopped asking ChatGPT to do things for her. She asked it to help her think. What followed was her First-Contact Protocol.
 
 
-*This is the second article in the series. New here? Start with [The Gap](https://www.linkedin.com/pulse/genai-school-ai-literacy-everybody-gap-mihai-cvasnievschi-icu3f/), where the story begins.*
+*This is the second article in the series. New here? Start with [The Gap]({{ site.baseurl }}/articles/the-gap/), where the story begins.*
 
 ### The Question That Changes Everything
 
@@ -140,7 +140,7 @@ What Maria just did is the First-Contact Protocol: before you trust any AI tool 
 
 What matters most is this: the protocol does not expire. The tools will change. New models will launch every few months. Features will expand, interfaces will be redesigned, entire products will appear and disappear. But your ability to sit down with a chatbot and use it to map your landscape, evaluate your tools, and plan your next experiment? That is a permanent skill. It works today. It will work on whatever arrives next.
 
-Ethan Mollick of Wharton, whose "jagged frontier" research we explored in [the previous article](https://www.linkedin.com/pulse/genai-school-ai-literacy-everybody-gap-mihai-cvasnievschi-icu3f/), [puts it simply](https://x.com/emollick/status/1671325114141491203): "Today's AI is the worst AI you will ever use." The tools will only get more powerful. The habit of using them as thinking partners, rather than mere task executors, will only grow more important.
+Ethan Mollick of Wharton, whose "jagged frontier" research we explored in [the previous article]({{ site.baseurl }}/articles/the-gap/), [puts it simply](https://x.com/emollick/status/1671325114141491203): "Today's AI is the worst AI you will ever use." The tools will only get more powerful. The habit of using them as thinking partners, rather than mere task executors, will only grow more important.
 
 
 ### Your Turn
@@ -173,7 +173,7 @@ The next article introduces the first pillar of the SPARKS framework: SCOPE. A s
 
 *This is Article 2 of 10 in "GenAI School: AI Literacy for Everybody," a complete, free course on working effectively with AI.*
 
-*Missed the beginning? Start with [The Gap](https://www.linkedin.com/pulse/genai-school-ai-literacy-everybody-gap-mihai-cvasnievschi-icu3f/).*
+*Missed the beginning? Start with [The Gap]({{ site.baseurl }}/articles/the-gap/).*
 
 *Follow for the next article, or share this with someone who needs it.*
 
