@@ -1,0 +1,22 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+{%- comment -%}
+  Built once per language: /sitemap.xml lists the English pages and
+  /ro/sitemap.xml the Romanian ones. Posts flagged "translated: false" are left
+  out because their canonical page is the English article.
+{%- endcomment %}
+{%- assign origin = site.url | append: site.baseurl %}
+{%- assign section_paths = "/,/articles/,/about/" | split: "," %}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for section_path in section_paths %}
+  <url><loc>{{ origin }}{{ section_path }}</loc></url>
+{%- endfor %}
+{%- for post in site.posts %}
+{%- unless post.translated == false %}
+  <url><loc>{{ origin }}{{ post.url }}</loc><lastmod>{{ post.date | date: "%Y-%m-%d" }}</lastmod></url>
+{%- endunless %}
+{%- endfor %}
+</urlset>

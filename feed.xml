@@ -1,0 +1,39 @@
+---
+layout: null
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+{%- comment -%}
+  Atom feed, built once per language. Posts flagged "translated: false" are left out.
+{%- endcomment %}
+{%- assign origin = site.url | append: site.baseurl %}
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ site.lang }}">
+  <title>{% t global.site_title %}</title>
+  <subtitle>{% t global.site_description %}</subtitle>
+  <link href="{{ origin }}/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="{{ origin }}/" rel="alternate" type="text/html" hreflang="{{ site.lang }}"/>
+  <id>{{ origin }}/</id>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <author>
+    <name>Mihai Cvasnievschi</name>
+    <uri>https://www.linkedin.com/in/mihaicvasnievschi/</uri>
+  </author>
+{%- for post in site.posts limit: 20 %}
+{%- unless post.translated == false %}
+  <entry>
+    <title>{{ post.title | xml_escape }}</title>
+    <link href="{{ origin }}{{ post.url }}" rel="alternate" type="text/html"/>
+    <id>{{ origin }}{{ post.url }}</id>
+    <published>{{ post.date | date_to_xmlschema }}</published>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <summary>
+      {%- if post.excerpt_text -%}
+        {{ post.excerpt_text | xml_escape }}
+      {%- else -%}
+        {{ post.excerpt | strip_html | normalize_whitespace | xml_escape }}
+      {%- endif -%}
+    </summary>
+  </entry>
+{%- endunless %}
+{%- endfor %}
+</feed>

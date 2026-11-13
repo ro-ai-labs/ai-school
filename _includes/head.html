@@ -1,7 +1,86 @@
+{%- comment -%}
+  Titles, descriptions and URLs are worked out once here and reused by the tags below.
+  English lives at the site root, Romanian under /ro. There is no /en path.
+{%- endcomment -%}
+{%- capture site_title -%}{% t global.site_title %}{%- endcapture -%}
+{%- capture site_description -%}{% t global.site_description %}{%- endcapture -%}
+
+{%- capture page_title -%}
+  {%- if page.title_key -%}{% t page.title_key %}{%- elsif page.title -%}{{ page.title }}{%- endif -%}
+{%- endcapture -%}
+{%- assign page_title = page_title | strip -%}
+{%- if page_title == "" -%}
+  {%- capture full_title -%}{% t global.home_title %}{%- endcapture -%}
+  {%- assign share_title = full_title -%}
+{%- else -%}
+  {%- capture full_title -%}{{ page_title }} | {{ site_title }}{%- endcapture -%}
+  {%- assign share_title = page_title -%}
+{%- endif -%}
+
+{%- if page.excerpt_text -%}
+  {%- assign page_description = page.excerpt_text -%}
+{%- elsif page.description_key -%}
+  {%- capture page_description -%}{% t page.description_key %}{%- endcapture -%}
+{%- elsif page.layout == "article" and page.excerpt -%}
+  {%- assign page_description = page.excerpt | strip_html | truncatewords: 30 -%}
+{%- else -%}
+  {%- assign page_description = site_description -%}
+{%- endif -%}
+{%- assign page_description = page_description | strip_html | normalize_whitespace | strip | escape_once -%}
+
+{%- assign en_url = site.url | append: site.baseurl_root | append: page.url -%}
+{%- assign ro_url = site.url | append: site.baseurl_root | append: "/ro" | append: page.url -%}
+{%- if site.lang == "ro" and page.translated != false -%}
+  {%- assign canonical_url = ro_url -%}
+{%- else -%}
+  {%- assign canonical_url = en_url -%}
+{%- endif -%}
+{%- assign share_image = site.url | append: site.baseurl_root | append: "/assets/img/og-image.png" -%}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if page.title %}{{ page.title }} | {% endif %}{% t global.site_title %}</title>
-<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 30 }}{% else %}{% t global.site_description %}{% endif %}">
+<title>{{ full_title | escape_once }}</title>
+<meta name="description" content="{{ page_description }}">
+{%- if page.noindex %}
+<meta name="robots" content="noindex">
+{%- endif %}
+
+<!-- Canonical and language alternates -->
+<link rel="canonical" href="{{ canonical_url }}">
+<link rel="alternate" hreflang="en" href="{{ en_url }}">
+{%- unless page.translated == false %}
+<link rel="alternate" hreflang="ro" href="{{ ro_url }}">
+{%- endunless %}
+<link rel="alternate" hreflang="x-default" href="{{ en_url }}">
+
+<!-- Share previews -->
+<meta property="og:type" content="{% if page.layout == 'article' %}article{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ site_title | escape_once }}">
+<meta property="og:title" content="{{ share_title | escape_once }}">
+<meta property="og:description" content="{{ page_description }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:locale" content="{% if site.lang == 'ro' %}ro_RO{% else %}en_US{% endif %}">
+<meta property="og:image" content="{{ share_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{% t global.share_image_alt %}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ share_title | escape_once }}">
+<meta name="twitter:description" content="{{ page_description }}">
+<meta name="twitter:image" content="{{ share_image }}">
+{%- if page.layout == "article" %}
+<meta name="author" content="{{ page.author | escape_once }}">
+<meta property="article:author" content="{{ page.author | escape_once }}">
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- endif %}
+
+<!-- Icons -->
+<link rel="icon" href="{{ site.baseurl_root }}/favicon.ico" sizes="32x32">
+<link rel="icon" href="{{ site.baseurl_root }}/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ site.baseurl_root }}/assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#1A6B5A">
+
+<!-- Feed -->
+<link rel="alternate" type="application/atom+xml" title="{{ site_title | escape_once }}" href="{{ site.baseurl }}/feed.xml">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -9,10 +88,4 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <!-- CSS -->
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-
-<!-- hreflang for SEO -->
-{% for lang in site.languages %}
-<link rel="alternate" hreflang="{{ lang }}" href="{{ site.url }}/{{ lang }}{{ page.url }}" />
-{% endfor %}
-<link rel="alternate" hreflang="x-default" href="{{ site.url }}/en{{ page.url }}" />
+<link rel="stylesheet" href="{{ site.baseurl_root }}/assets/css/main.css">
