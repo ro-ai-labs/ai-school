@@ -18,6 +18,11 @@
 
 .article-meta-separator {
   color: $color-border;
+
+  // On a phone the byline wraps, and a dot would be left hanging at a line end.
+  @media (max-width: $bp-mobile) {
+    display: none;
+  }
 }
 
 .article-series-badge {
