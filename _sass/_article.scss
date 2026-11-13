@@ -1,15 +1,16 @@
 .article-header {
   text-align: center;
-  padding: $space-xl 0 $space-lg;
+  padding: $space-xl $space-lg $space-lg;
   max-width: $content-width;
   margin: 0 auto;
 }
 
 .article-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: $space-md;
+  gap: $space-xs $space-md;
   font-size: 0.85rem;
   color: $color-text-light;
   margin-bottom: $space-md;

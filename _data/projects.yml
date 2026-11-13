@@ -1,7 +1,8 @@
 # The author's other projects, in display order.
 # Every placement on the site reads from here: the "Go further" cards on the home
 # page, the author box under each article, the About page and the footer.
-# To add a project, add an entry with the same fields. Text fields have one value
+# To add a project, add an entry with the same fields, with "id" first (the site
+# check counts entries by it). Text fields have one value
 # per site language (en, ro). Facts checked against each live site on 2026-11-13.
 
 - id: lets-talk-ai
@@ -11,7 +12,7 @@
     ro: "https://lets-talk-ai.ro/ro/"
   role:
     en: "Founder and co-organizer"
-    ro: "Fondator și co-organizator"
+    ro: "Fondator și coorganizator"
   need:
     en: "Talk about it in person"
     ro: "Vorbește despre AI față în față"
@@ -38,7 +39,7 @@
     ro: "Adu AI în echipa ta"
   blurb:
     en: "AI strategy and hands-on workshops for companies in Romania. The workshops also count toward the AI literacy the EU AI Act expects from companies that use AI. The first call is free."
-    ro: "Strategie AI și workshopuri practice pentru companii din România. Workshopurile contează și pentru AI literacy, pe care EU AI Act o așteaptă de la companiile care folosesc AI. Prima discuție este gratuită."
+    ro: "Strategie AI și workshopuri practice pentru companii din România. Workshopurile sunt și una dintre măsurile de AI literacy pe care EU AI Act le cere companiilor care folosesc AI. Prima discuție este gratuită."
   tagline:
     en: "AI strategy and workshops for companies"
     ro: "strategie AI și workshopuri pentru companii"
@@ -62,7 +63,7 @@
     ro: "O rețea de practicieni din România care au dus AI în producție. Vorbește cu cineva care a luat deja decizia prin care treci tu acum."
   tagline:
     en: "a network of AI practitioners in Romania"
-    ro: "rețeaua practicienilor AI din România"
+    ro: "o rețea de practicieni AI din România"
   cta:
     en: "Meet the experts"
     ro: "Vezi experții"

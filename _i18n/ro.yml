@@ -31,16 +31,16 @@ articles:
   untranslated_notice: "Acest articol nu este încă tradus în română."
   read_in_english: "Citește-l în engleză"
   related: "Articole similare"
-  previous: "Anteriorul din serie"
-  next: "Următorul din serie"
+  previous: "Articolul anterior din serie"
+  next: "Articolul următor din serie"
   share: "Distribuie articolul"
 
 projects:
   title: "Mergi mai departe"
   intro: "AI School este gratuit și rămâne gratuit. Este scris de Mihai Cvasnievschi, care se ocupă și de proiectele de mai jos. Dacă articolele ți-au fost de folos, aici continuă conversația."
-  about_title: "Ce mai face Mihai"
-  about_intro: "AI School este unul dintre mai multe proiecte construite în jurul aceleiași idei: să ajute oamenii și companiile să folosească bine AI."
-  footer_title: "Tot de Mihai Cvasnievschi"
+  about_title: "Alte proiecte ale lui Mihai"
+  about_intro: "AI School este unul dintre mai multe proiecte construite în jurul aceleiași idei: oamenii și companiile să folosească bine AI."
+  footer_title: "Alte proiecte de Mihai Cvasnievschi"
 
 author:
   title: "Despre autor"
@@ -50,14 +50,14 @@ author:
 
 about:
   title: "Despre"
-  description: "AI School este o inițiativă gratuită de AI literacy a lui Mihai Cvasnievschi. Cine o scrie, de ce este gratuită și ce mai face el."
+  description: "AI School este o inițiativă gratuită de AI literacy a lui Mihai Cvasnievschi. Cine o scrie, de ce este gratuită și ce alte proiecte are."
   intro: "AI School este o inițiativă gratuită de AI literacy creată de <strong>Mihai Cvasnievschi</strong>, arhitect AI/ML cu peste 25 de ani de experiență în dezvoltare software și peste 10 ani în care a construit sisteme AI de producție."
   bio_more: "Lucrează cu edge AI, platforme LLM enterprise, RAG și MLOps, mereu cu același test: rezistă în producție, nu doar în demo?"
   mission_title: "Misiunea"
   mission_gap: "30% dintre angajații europeni folosesc AI zilnic. Doar 15% au primit vreo formă de training. EU AI Act cere acum AI literacy de la organizațiile care folosesc sisteme AI, iar aplicarea începe în 2026."
   mission_free: "AI School există ca să închidă acest decalaj. Totul aici este gratuit: articolele, framework-ul, metodologia. Fără paywall, fără abonamente, fără cont. Valoarea vorbește de la sine."
   framework_title: "SPARKS-SIX"
-  framework_text: "Articolele noastre se bazează pe framework-ul SPARKS-SIX: o metodologie cu șase piloni pentru a lucra eficient și responsabil cu orice instrument AI. Framework-ul este publicat integral prin seria noastră de articole."
+  framework_text: "Articolele noastre se bazează pe framework-ul SPARKS-SIX: o metodologie cu șase piloni pentru a lucra eficient și responsabil cu orice instrument AI. Framework-ul este publicat treptat, prin seria noastră de articole."
   connect_title: "Contact"
   connect_html: 'Urmărește proiectul pe <a href="https://www.linkedin.com/in/mihaicvasnievschi/" target="_blank" rel="noopener">LinkedIn</a>, unde este publicată seria originală de articole.'
 
@@ -68,6 +68,6 @@ notfound:
 
 footer:
   tagline: "AI literacy gratuit, bazat pe framework-ul SPARKS-SIX."
-  follow: "Urmărește pe LinkedIn"
+  follow: "Urmărește-l pe Mihai pe LinkedIn"
   copyright: "AI School. Tot conținutul poate fi folosit și distribuit liber."
   built_with: "Făcut cu grijă în București."
