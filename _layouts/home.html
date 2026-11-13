@@ -7,16 +7,34 @@ layout: default
     <span class="hero-badge">GenAI School</span>
     <h1 class="hero-title">{% t hero.title %}</h1>
     <p class="hero-subtitle">{% t hero.subtitle %}</p>
-    <a href="{{ '/articles/' | relative_url }}" class="hero-cta">{% t hero.cta %}</a>
+    <a href="{{ site.baseurl }}/articles/" class="hero-cta">{% t hero.cta %}</a>
   </div>
 </section>
 
 <section class="container">
-  <h2>{% t articles.all_articles %}</h2>
+  <div class="section-heading">
+    <h2>{% t articles.latest %}</h2>
+    <a href="{{ site.baseurl }}/articles/" class="section-heading-link">{% t articles.view_all %} &rarr;</a>
+  </div>
   <div class="articles-grid">
     {% assign posts = site.posts | sort: "date" | reverse %}
     {% for post in posts limit:3 %}
       {% include article-card.html post=post %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container projects" aria-labelledby="projects-title">
+  <h2 id="projects-title">{% t projects.title %}</h2>
+  <p class="projects-intro">{% t projects.intro %}</p>
+  <div class="projects-grid">
+    {% for proj in site.data.projects %}
+    <article class="project-card">
+      <span class="project-card-need">{{ proj.need[site.lang] }}</span>
+      <h3 class="project-card-name">{{ proj.name }}</h3>
+      <p class="project-card-blurb">{{ proj.blurb[site.lang] }}</p>
+      <a class="project-card-link" href="{% include project-url.html project=proj placement='home' %}" target="_blank" rel="noopener">{{ proj.cta[site.lang] }} &rarr;</a>
+    </article>
     {% endfor %}
   </div>
 </section>

@@ -1,0 +1,49 @@
+// "About the author" under every article: who wrote it and what else he does.
+
+.author-box {
+  margin-bottom: $space-lg;
+  padding: $space-lg;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-left: 3px solid $color-accent;
+  border-radius: 0 8px 8px 0;
+}
+
+.author-box-title {
+  font-family: $font-body;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text-light;
+  margin: 0 0 $space-sm;
+}
+
+.author-box-bio {
+  font-size: 0.95rem;
+}
+
+.author-box-more {
+  font-size: 0.85rem;
+  color: $color-text-light;
+  margin-bottom: $space-xs;
+}
+
+.author-box-projects {
+  list-style: none;
+  margin-bottom: $space-md;
+  font-size: 0.9rem;
+
+  li {
+    padding: $space-xs 0;
+  }
+
+  a {
+    font-weight: 600;
+  }
+}
+
+.author-box-linkedin {
+  font-size: 0.85rem;
+  font-weight: 600;
+}

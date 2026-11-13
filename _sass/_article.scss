@@ -25,8 +25,21 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: $color-primary;
+  color: $color-primary-text;
   margin-bottom: $space-sm;
+}
+
+// Shown in place of the text when an article is not translated yet.
+.article-untranslated {
+  padding: $space-md $space-lg;
+  background: rgba($color-primary, 0.08);
+  border-left: 3px solid $color-primary;
+  border-radius: 0 4px 4px 0;
+
+  a {
+    font-weight: 600;
+    white-space: nowrap;
+  }
 }
 
 .article-title {

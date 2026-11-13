@@ -1,0 +1,110 @@
+// The author's other projects: "Go further" cards on the home page and the
+// list on the About page. Content comes from _data/projects.yml.
+
+.projects {
+  h2 {
+    margin-bottom: $space-sm;
+  }
+}
+
+.projects-intro {
+  max-width: $content-width;
+  color: $color-text-light;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-lg;
+  padding: $space-lg 0;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-card {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  padding: $space-lg;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: $color-accent;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+}
+
+// The reader's reason to click, above the project name.
+.project-card-need {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-accent;
+  margin-bottom: $space-sm;
+}
+
+.project-card-name {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: $space-sm;
+}
+
+.project-card-blurb {
+  font-size: 0.9rem;
+  color: $color-text-light;
+  line-height: 1.6;
+  margin-bottom: $space-md;
+  flex-grow: 1;
+}
+
+.project-card-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+// About page
+.about-projects {
+  list-style: none;
+  margin: $space-md 0 0;
+}
+
+.about-project {
+  padding: $space-md 0;
+  border-top: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: 1px solid $color-border;
+  }
+
+  p {
+    margin: $space-xs 0 0;
+    font-size: 0.95rem;
+    color: $color-text-light;
+  }
+}
+
+.about-project-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: $space-xs $space-md;
+}
+
+.about-project-name {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.about-project-role {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text-light;
+}

@@ -2,6 +2,16 @@
 layout: default
 ---
 
+{%- comment -%}
+  A post flagged "translated: false" has no text in this language yet. Its page
+  says so and points at the English article, which is also what gets shared.
+{%- endcomment -%}
+{%- if page.translated == false -%}
+  {%- assign share_url = site.url | append: site.baseurl_root | append: page.url -%}
+{%- else -%}
+  {%- assign share_url = site.url | append: site.baseurl | append: page.url -%}
+{%- endif %}
+
 <article>
   <header class="article-header">
     {% if page.series %}
@@ -11,7 +21,7 @@ layout: default
     <div class="article-meta">
       <span>{{ page.author }}</span>
       <span class="article-meta-separator">&middot;</span>
-      <time>{{ page.date | date: "%B %-d, %Y" }}</time>
+      <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{% include date.html date=page.date %}</time>
       {% if page.reading_time %}
       <span class="article-meta-separator">&middot;</span>
       <span>{{ page.reading_time }} {% t articles.minutes_read %}</span>
@@ -23,35 +33,50 @@ layout: default
   </header>
 
   <div class="article-body">
+    {% if page.translated == false %}
+    <p class="article-untranslated" data-untranslated>
+      {% t articles.untranslated_notice %}
+      <a href="{{ site.baseurl_root }}{{ page.url }}" data-lang-link="en" hreflang="en">{% t articles.read_in_english %} &rarr;</a>
+    </p>
+    {% endif %}
     {{ content }}
   </div>
 
   <footer class="article-footer">
+    {% include author-box.html %}
+
     <div class="article-share">
       <span>{% t articles.share %}</span>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}" target="_blank" rel="noopener" class="article-share-link">LinkedIn</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url | url_encode }}" target="_blank" rel="noopener" class="article-share-link">LinkedIn</a>
     </div>
 
-    {% assign sorted_posts = site.posts | sort: "series_order" %}
     {% if page.series and page.series_order %}
-    <nav class="series-nav">
+      {% assign prev_order = page.series_order | minus: 1 %}
+      {% assign next_order = page.series_order | plus: 1 %}
+      {% assign prev_post = nil %}
+      {% assign next_post = nil %}
+      {% for post in site.posts %}
+        {% if post.series == page.series %}
+          {% if post.series_order == prev_order %}{% assign prev_post = post %}{% endif %}
+          {% if post.series_order == next_order %}{% assign next_post = post %}{% endif %}
+        {% endif %}
+      {% endfor %}
+      {% if prev_post or next_post %}
+    <nav class="series-nav" aria-label="{% t articles.series_label %}">
       <div class="series-nav-item">
-        {% for post in sorted_posts %}
-          {% if post.series == page.series and post.series_order == page.series_order | minus: 1 %}
-            <div class="series-nav-label">{% t articles.previous %}</div>
-            <a href="{{ post.url }}" class="series-nav-title">{{ post.title }}</a>
-          {% endif %}
-        {% endfor %}
+        {% if prev_post %}
+        <div class="series-nav-label">{% t articles.previous %}</div>
+        <a href="{% include post-href.html post=prev_post %}" class="series-nav-title"{% if prev_post.translated == false %} data-lang-link="en" hreflang="en"{% endif %}>{{ prev_post.title }}</a>
+        {% endif %}
       </div>
       <div class="series-nav-item series-nav-item--next">
-        {% for post in sorted_posts %}
-          {% if post.series == page.series and post.series_order == page.series_order | plus: 1 %}
-            <div class="series-nav-label">{% t articles.next %}</div>
-            <a href="{{ post.url }}" class="series-nav-title">{{ post.title }}</a>
-          {% endif %}
-        {% endfor %}
+        {% if next_post %}
+        <div class="series-nav-label">{% t articles.next %}</div>
+        <a href="{% include post-href.html post=next_post %}" class="series-nav-title"{% if next_post.translated == false %} data-lang-link="en" hreflang="en"{% endif %}>{{ next_post.title }}</a>
+        {% endif %}
       </div>
     </nav>
+      {% endif %}
     {% endif %}
   </footer>
 </article>

@@ -99,3 +99,41 @@ table {
   max-width: $content-width;
   margin: 0 auto;
 }
+
+// A section title with a "see all" link on the same line.
+.section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: $space-sm $space-lg;
+  margin-top: $space-xl;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.section-heading-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.page-intro {
+  padding-top: $space-xl;
+}
+
+.about-page {
+  padding: $space-xl $space-md $space-2xl;
+}
+
+.not-found {
+  padding: $space-2xl $space-md;
+  text-align: center;
+
+  p {
+    color: $color-text-light;
+    margin-bottom: $space-lg;
+  }
+}

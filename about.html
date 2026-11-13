@@ -1,24 +1,36 @@
 ---
 layout: default
-title: About
+title_key: nav.about
+description_key: about.description
 ---
 
-<div class="content-width" style="padding: 3rem 1rem 5rem;">
+<div class="content-width about-page">
   <h1>{% t about.title %}</h1>
 
-  <p>AI School is a free AI literacy initiative created by <strong>Mihai Cvasnievschi</strong>, an AI/ML Architect with 25+ years of software development experience and over 10 years building production AI systems.</p>
+  <p>{% t about.intro %}</p>
+  <p>{% t about.bio_more %}</p>
 
-  <h2>The Mission</h2>
+  <h2>{% t about.mission_title %}</h2>
+  <p>{% t about.mission_gap %}</p>
+  <p>{% t about.mission_free %}</p>
 
-  <p>30% of European workers use AI daily. Only 15% have received any training. The EU AI Act now mandates AI literacy for organisations deploying AI systems, with enforcement beginning in 2026.</p>
+  <h2>{% t about.framework_title %}</h2>
+  <p>{% t about.framework_text %}</p>
 
-  <p>AI School exists to close that gap. Everything here is free: the articles, the framework, the methodology. No paywalls, no paid tiers, no upsells. The value speaks for itself.</p>
+  <h2>{% t projects.about_title %}</h2>
+  <p>{% t projects.about_intro %}</p>
+  <ul class="about-projects">
+    {% for proj in site.data.projects %}
+    <li class="about-project">
+      <div class="about-project-heading">
+        <h3 class="about-project-name"><a href="{% include project-url.html project=proj placement='about' %}" target="_blank" rel="noopener">{{ proj.name }}</a></h3>
+        <span class="about-project-role">{{ proj.role[site.lang] }}</span>
+      </div>
+      <p>{{ proj.blurb[site.lang] }}</p>
+    </li>
+    {% endfor %}
+  </ul>
 
-  <h2>SPARKS-SIX</h2>
-
-  <p>Our articles are grounded in the SPARKS-SIX framework: a six-pillar methodology for working effectively and responsibly with any AI tool. The framework is being released publicly through our article series.</p>
-
-  <h2>Connect</h2>
-
-  <p>Follow the journey on <a href="https://www.linkedin.com/in/mihaicvasnievschi/" target="_blank" rel="noopener">LinkedIn</a>, where the original article series is published.</p>
+  <h2>{% t about.connect_title %}</h2>
+  <p>{% t about.connect_html %}</p>
 </div>

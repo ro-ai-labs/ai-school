@@ -24,13 +24,32 @@
   }
 }
 
+.article-card-labels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-xs $space-sm;
+  margin-bottom: $space-sm;
+}
+
 .article-card-series {
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: $color-primary;
-  margin-bottom: $space-sm;
+  color: $color-primary-text;
+}
+
+// Marks a card whose article exists only in English.
+.article-card-lang {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text-light;
+  border: 1px solid $color-border;
+  border-radius: 3px;
+  padding: 0 $space-xs;
 }
 
 .article-card-title {
@@ -38,6 +57,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.3;
+  margin-top: 0;
   margin-bottom: $space-sm;
 
   a {
@@ -59,12 +79,18 @@
   flex-grow: 1;
 }
 
+// Date, reading time and the link stay whole; the row wraps between them.
 .article-card-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: $space-sm;
+  gap: $space-xs $space-md;
   font-size: 0.8rem;
   color: $color-text-light;
+
+  > * {
+    white-space: nowrap;
+  }
 }
 
 .article-card-read {

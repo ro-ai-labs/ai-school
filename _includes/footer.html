@@ -6,9 +6,18 @@
     </div>
 
     <div class="footer-links">
-      <a href="{{ '/' | relative_url }}">{% t nav.home %}</a>
-      <a href="{{ '/articles/' | relative_url }}">{% t nav.articles %}</a>
-      <a href="{{ '/about/' | relative_url }}">{% t nav.about %}</a>
+      <a href="{{ site.baseurl }}/">{% t nav.home %}</a>
+      <a href="{{ site.baseurl }}/articles/">{% t nav.articles %}</a>
+      <a href="{{ site.baseurl }}/about/">{% t nav.about %}</a>
+    </div>
+
+    <div class="footer-projects">
+      <span class="footer-projects-title">{% t projects.footer_title %}</span>
+      <ul class="footer-projects-list">
+        {% for proj in site.data.projects %}
+        <li><a href="{% include project-url.html project=proj placement='footer' %}" target="_blank" rel="noopener">{{ proj.name }}</a></li>
+        {% endfor %}
+      </ul>
     </div>
 
     <div class="footer-social">

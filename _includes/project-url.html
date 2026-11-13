@@ -1,0 +1,7 @@
+{%- comment -%}
+  Outbound link to one of the author's projects (see _data/projects.yml), in the
+  page language, tagged so the project's analytics can see ai-school.ro as the source.
+  Usage: href="{% include project-url.html project=proj placement='home' %}"
+  placement is one of: home, article, about, footer.
+{%- endcomment -%}
+{{- include.project.url[site.lang] }}?utm_source=ai-school.ro&amp;utm_medium=site&amp;utm_campaign={{ site.lang }}&amp;utm_content={{ include.placement -}}

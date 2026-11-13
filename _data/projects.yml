@@ -1,0 +1,89 @@
+# The author's other projects, in display order.
+# Every placement on the site reads from here: the "Go further" cards on the home
+# page, the author box under each article, the About page and the footer.
+# To add a project, add an entry with the same fields. Text fields have one value
+# per site language (en, ro). Facts checked against each live site on 2026-11-13.
+
+- id: lets-talk-ai
+  name: "Let's Talk AI"
+  url:
+    en: "https://lets-talk-ai.ro/"
+    ro: "https://lets-talk-ai.ro/ro/"
+  role:
+    en: "Founder and co-organizer"
+    ro: "Fondator și co-organizator"
+  need:
+    en: "Talk about it in person"
+    ro: "Vorbește despre AI față în față"
+  blurb:
+    en: "A free monthly AI mixer in Bucharest, on the first Wednesday of the month. People who work with AI share what worked and what they would do differently."
+    ro: "Un mixer lunar gratuit despre AI, la București, în prima miercuri a lunii. Oameni care lucrează cu AI povestesc ce a mers și ce ar face altfel."
+  tagline:
+    en: "the free monthly AI mixer in Bucharest"
+    ro: "mixerul lunar gratuit despre AI din București"
+  cta:
+    en: "See the next edition"
+    ro: "Vezi următoarea ediție"
+
+- id: ai-labs
+  name: "AI Labs"
+  url:
+    en: "https://ai-labs.ro/"
+    ro: "https://ai-labs.ro/ro/"
+  role:
+    en: "Founder"
+    ro: "Fondator"
+  need:
+    en: "Bring it to your team"
+    ro: "Adu AI în echipa ta"
+  blurb:
+    en: "AI strategy and hands-on workshops for companies in Romania. The workshops also count toward the AI literacy the EU AI Act expects from companies that use AI. The first call is free."
+    ro: "Strategie AI și workshopuri practice pentru companii din România. Workshopurile contează și pentru AI literacy, pe care EU AI Act o așteaptă de la companiile care folosesc AI. Prima discuție este gratuită."
+  tagline:
+    en: "AI strategy and workshops for companies"
+    ro: "strategie AI și workshopuri pentru companii"
+  cta:
+    en: "Visit AI Labs"
+    ro: "Vezi AI Labs"
+
+- id: ai-leaders
+  name: "AI Leaders Romania"
+  url:
+    en: "https://ai-leaders.ro/en/"
+    ro: "https://ai-leaders.ro/"
+  role:
+    en: "Founder"
+    ro: "Fondator"
+  need:
+    en: "Facing an AI decision"
+    ro: "Ai de luat o decizie AI"
+  blurb:
+    en: "A network of practitioners in Romania who have taken AI to production. Talk to someone who has already made the decision in front of you."
+    ro: "O rețea de practicieni din România care au dus AI în producție. Vorbește cu cineva care a luat deja decizia prin care treci tu acum."
+  tagline:
+    en: "a network of AI practitioners in Romania"
+    ro: "rețeaua practicienilor AI din România"
+  cta:
+    en: "Meet the experts"
+    ro: "Vezi experții"
+
+- id: ship-it-with-ai
+  name: "Ship It With AI"
+  url:
+    en: "https://ship-it-with.ai/"
+    ro: "https://ship-it-with.ai/ro/"
+  role:
+    en: "Author"
+    ro: "Autor"
+  need:
+    en: "Building software with AI"
+    ro: "Construiești software cu AI"
+  blurb:
+    en: "A free field manual for shipping software with AI coding agents. Vendor neutral, written for engineers and the people who manage them."
+    ro: "Un manual gratuit despre cum livrezi software cu agenți AI de programare. Independent de furnizori, scris pentru ingineri și pentru cei care îi conduc."
+  tagline:
+    en: "a free field manual for AI coding agents"
+    ro: "un manual gratuit despre agenții AI de programare"
+  cta:
+    en: "Read the manual"
+    ro: "Citește manualul"
