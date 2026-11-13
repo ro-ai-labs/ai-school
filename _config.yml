@@ -6,7 +6,7 @@ baseurl: ""
 # Languages
 languages: ["en", "ro"]
 default_lang: "en"
-exclude_from_localizations: ["assets", "CNAME"]
+exclude_from_localizations: ["assets", "CNAME", "favicon.ico"]
 
 # Permalinks
 permalink: /articles/:slug/
@@ -23,6 +23,7 @@ exclude:
   - Gemfile.lock
   - README.md
   - docs/
+  - scripts/
   - framework/
   - "AI School/"
   - node_modules/

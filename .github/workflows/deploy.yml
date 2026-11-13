@@ -3,6 +3,9 @@ name: Deploy Jekyll to GitHub Pages
 on:
   push:
     branches: ["main"]
+  # Pull requests are built and checked, never deployed.
+  pull_request:
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +14,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.ref) || 'pages' }}
   cancel-in-progress: false
 
 jobs:
@@ -34,10 +37,14 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      - name: Check the built site
+        run: python3 scripts/check_site.py _site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
   deploy:
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
