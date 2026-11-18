@@ -6,6 +6,7 @@ $color-primary-text: #8A6510;
 $color-bg: #FAF8F5;
 $color-text: #2D2926;
 $color-accent: #1A6B5A;
+$color-accent-dark: #124A3E;
 $color-accent-secondary: #E07A5F;
 $color-border: #E8E4DF;
 $color-text-light: #6B6560;
@@ -21,6 +22,12 @@ $font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 $content-width: 720px;
 $site-width: 1200px;
 $nav-height: 64px;
+$radius: 12px;
+$radius-sm: 8px;
+
+// Shadows
+$shadow-sm: 0 1px 2px rgba(45, 41, 38, 0.05), 0 2px 8px rgba(45, 41, 38, 0.04);
+$shadow-md: 0 8px 28px rgba(45, 41, 38, 0.09);
 
 // Spacing
 $space-xs: 0.25rem;
@@ -32,5 +39,6 @@ $space-2xl: 5rem;
 
 // Breakpoints
 $bp-mobile: 600px;
+$bp-nav: 780px; // below this the menu folds into the button
 $bp-tablet: 900px;
 $bp-desktop: 1200px;

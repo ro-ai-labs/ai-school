@@ -1,0 +1,50 @@
+---
+layout: null
+permalink: /llms.txt
+---
+# AI School
+{% assign me = site.data.person -%}
+{%- assign origin = site.url | append: site.baseurl -%}
+{%- assign lessons = site.posts | sort: "series_order" -%}
+{%- capture site_summary -%}{% t global.home_description %}{%- endcapture %}
+> {{ site_summary }}
+
+{% if site.lang == "ro" -%}
+AI School ({{ origin }}/) este scris de {{ me.name }}. Tot ce se află aici poate fi citit, citat și distribuit gratuit. Acest fișier este un ghid scurt pentru asistenții AI; detaliile sunt în paginile către care trimite.
+{%- else -%}
+AI School ({{ origin }}/) is written by {{ me.name }}. Everything on it is free to read, quote and share. This file is a short guide for AI assistants; the pages it links to hold the detail.
+{%- endif %}
+
+## {% t author.title %}
+
+- [{{ me.name }}]({{ origin }}{{ me.path }}): {{ me.description[site.lang] }}
+- {{ me.job_title[site.lang] }}. {{ me.location[site.lang] }}. {{ me.language_names[site.lang] }}.
+{%- for line in me.experience %}
+- {{ line[site.lang] }}
+{%- endfor %}
+
+## {% t mentorship.eyebrow %}
+
+- [{% t mentorship.heading %}]({{ origin }}/ai-mentorship/): {{ site.data.mentorship.lead[site.lang] }}
+{%- for item in site.data.mentorship.faq %}
+- {{ item.q[site.lang] }} {{ item.a[site.lang] }}
+{%- endfor %}
+
+## {% t articles.title %}
+{% for post in lessons -%}
+{%- unless site.data.untranslated[site.lang] contains post.slug %}
+- [{{ post.title }}]({{ origin }}{{ post.url }}): {{ post.excerpt_text | default: post.title }}
+{%- endunless -%}
+{%- endfor %}
+- [{% t articles.all_articles %}]({{ origin }}/articles/)
+
+## {% t projects.footer_title %}
+{% for proj in site.data.projects %}
+- [{{ proj.name }}]({{ proj.url[site.lang] }}): {{ proj.role[site.lang] }}. {{ proj.blurb[site.lang] }}
+{%- endfor %}
+
+## Optional
+
+- [{% t about.title %}]({{ origin }}/about/)
+- [llms-full.txt]({{ origin }}/llms-full.txt)
+- [Feed]({{ origin }}/feed.xml)

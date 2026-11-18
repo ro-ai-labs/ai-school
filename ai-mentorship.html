@@ -1,0 +1,105 @@
+---
+layout: default
+title_key: mentorship.title
+description_key: mentorship.description
+share_image: /assets/img/og-author.png
+---
+{%- comment -%}
+  The mentorship page. Copy comes from _data/mentorship.yml and describes the
+  offer on ai-labs.ro/speaking/. The questions and answers at the bottom are
+  also given to search engines, word for word.
+{%- endcomment -%}
+{%- assign me = site.data.person -%}
+{%- assign mentor_data = site.data.mentorship -%}
+{%- capture booking_url -%}{{ mentor_data.booking[site.lang] }}?utm_source=ai-school.ro&amp;utm_medium=site&amp;utm_campaign={{ site.lang }}&amp;utm_content=cta{%- endcapture -%}
+{%- capture crumb -%}{% t mentorship.eyebrow %}{%- endcapture -%}
+
+<div class="mentorship">
+  <div class="container">
+    {% include breadcrumbs.html label=crumb %}
+
+    <header class="mentorship-hero">
+      <span class="eyebrow">{% t mentorship.eyebrow %}</span>
+      <h1>{% t mentorship.heading %}</h1>
+      <p class="mentorship-lead">{{ mentor_data.lead[site.lang] }}</p>
+      <ul class="fact-chips">
+        {% for fact in mentor_data.facts %}
+        <li>{{ fact[site.lang] }}</li>
+        {% endfor %}
+      </ul>
+      <p class="mentorship-actions">
+        <a class="btn" href="{{ booking_url }}" target="_blank" rel="noopener">{% t mentorship.cta %}</a>
+        <a class="btn btn--ghost" href="{{ me.linkedin }}" target="_blank" rel="noopener me">{% t mentorship.cta_linkedin %}</a>
+      </p>
+      <p class="mentorship-note">{% t mentorship.cta_note %}</p>
+    </header>
+
+    <div class="mentorship-columns">
+      <section aria-labelledby="mentorship-bring">
+        <h2 id="mentorship-bring">{% t mentorship.bring_title %}</h2>
+        <p class="section-intro">{% t mentorship.bring_intro %}</p>
+        <ul class="check-list">
+          {% for line in mentor_data.bring %}
+          <li>{{ line[site.lang] }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section class="mentor-card" aria-labelledby="mentorship-who">
+        <h2 id="mentorship-who">{% t mentorship.who_title %}</h2>
+        <div class="mentor-card-head">
+          {% include author-photo.html class="mentor-card-photo" sizes="96px" %}
+          <div>
+            <a class="mentor-card-name" href="{{ site.baseurl }}{{ me.path }}">{{ me.name }}</a>
+            <p class="mentor-card-tagline">{{ me.tagline[site.lang] }}</p>
+          </div>
+        </div>
+        <ul class="check-list check-list--compact">
+          {% for line in mentor_data.proof %}
+          <li>{{ line[site.lang] }}</li>
+          {% endfor %}
+        </ul>
+        <a class="arrow-link" href="{{ site.baseurl }}{{ me.path }}">{% t mentorship.who_cta %} &rarr;</a>
+      </section>
+    </div>
+
+    <section class="projects" aria-labelledby="mentorship-ways">
+      <h2 id="mentorship-ways">{% t mentorship.ways_title %}</h2>
+      <p class="projects-intro">{% t mentorship.ways_intro %}</p>
+      <div class="projects-grid projects-grid--three">
+        <article class="project-card">
+          <span class="project-card-need">{% t mentorship.ways_school_kicker %}</span>
+          <h3 class="project-card-name">{% t mentorship.ways_school_title %}</h3>
+          <p class="project-card-blurb">{% t mentorship.ways_school_text %}</p>
+          <a class="project-card-link" href="{{ site.baseurl }}/articles/">{% t mentorship.ways_school_cta %} &rarr;</a>
+        </article>
+        {% for proj in site.data.projects %}
+        <article class="project-card">
+          <span class="project-card-need">{{ proj.need[site.lang] }}</span>
+          <h3 class="project-card-name">{{ proj.name }}</h3>
+          <p class="project-card-blurb">{{ proj.help[site.lang] }}</p>
+          <a class="project-card-link" href="{% include project-url.html project=proj placement='mentorship' %}" target="_blank" rel="noopener">{{ proj.cta[site.lang] }} &rarr;</a>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="faq" aria-labelledby="mentorship-faq">
+      <h2 id="mentorship-faq">{% t mentorship.faq_title %}</h2>
+      {% for item in mentor_data.faq %}
+      <details class="faq-item">
+        <summary>{{ item.q[site.lang] }}</summary>
+        <p>{{ item.a[site.lang] }}</p>
+      </details>
+      {% endfor %}
+    </section>
+
+    <section class="mentor-band" aria-labelledby="mentorship-closing">
+      <div class="mentor-band-text">
+        <h2 id="mentorship-closing">{% t mentorship.closing_title %}</h2>
+        <p>{% t mentorship.closing_text %}</p>
+      </div>
+      <a class="btn btn--light" href="{{ booking_url }}" target="_blank" rel="noopener">{% t mentorship.cta %}</a>
+    </section>
+  </div>
+</div>

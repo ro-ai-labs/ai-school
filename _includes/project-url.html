@@ -2,6 +2,7 @@
   Outbound link to one of the author's projects (see _data/projects.yml), in the
   page language, tagged so the project's analytics can see ai-school.ro as the source.
   Usage: href="{% include project-url.html project=proj placement='home' %}"
-  placement is one of: home, article, about, footer.
+  placement says where on the site the link sits: home, article, about, footer,
+  author or mentorship. scripts/check_site.py counts them per page.
 {%- endcomment -%}
 {{- include.project.url[site.lang] }}?utm_source=ai-school.ro&amp;utm_medium=site&amp;utm_campaign={{ site.lang }}&amp;utm_content={{ include.placement -}}

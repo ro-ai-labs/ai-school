@@ -5,18 +5,34 @@ permalink: /sitemap.xml
 <?xml version="1.0" encoding="UTF-8"?>
 {%- comment -%}
   Built once per language: /sitemap.xml lists the English pages and
-  /ro/sitemap.xml the Romanian ones. Posts listed in _data/untranslated.yml for this language are left
-  out because their canonical page is the English article.
+  /ro/sitemap.xml the Romanian ones. Each page names its version in the other
+  language. Posts listed in _data/untranslated.yml for this language are left
+  out because their real page is the English article.
 {%- endcomment %}
 {%- assign origin = site.url | append: site.baseurl %}
-{%- assign section_paths = "/,/articles/,/about/" | split: "," %}
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- assign en_origin = site.url | append: site.baseurl_root %}
+{%- assign ro_origin = en_origin | append: "/ro" %}
+{%- assign section_paths = "/,/articles/,/mihai-cvasnievschi/,/ai-mentorship/,/about/" | split: "," %}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 {%- for section_path in section_paths %}
-  <url><loc>{{ origin }}{{ section_path }}</loc></url>
+  <url>
+    <loc>{{ origin }}{{ section_path }}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ en_origin }}{{ section_path }}"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="{{ ro_origin }}{{ section_path }}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ en_origin }}{{ section_path }}"/>
+  </url>
 {%- endfor %}
 {%- for post in site.posts %}
 {%- unless site.data.untranslated[site.lang] contains post.slug %}
-  <url><loc>{{ origin }}{{ post.url }}</loc><lastmod>{{ post.date | date: "%Y-%m-%d" }}</lastmod></url>
+  <url>
+    <loc>{{ origin }}{{ post.url }}</loc>
+    <lastmod>{{ post.last_modified_at | default: post.date | date: "%Y-%m-%d" }}</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ en_origin }}{{ post.url }}"/>
+{%- unless site.data.untranslated.ro contains post.slug %}
+    <xhtml:link rel="alternate" hreflang="ro" href="{{ ro_origin }}{{ post.url }}"/>
+{%- endunless %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ en_origin }}{{ post.url }}"/>
+  </url>
 {%- endunless %}
 {%- endfor %}
 </urlset>

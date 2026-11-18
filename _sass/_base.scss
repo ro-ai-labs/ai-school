@@ -7,6 +7,8 @@
 html {
   font-size: 18px;
   scroll-behavior: smooth;
+  // Jumping to a heading must not hide it under the fixed menu.
+  scroll-padding-top: $nav-height + 16px;
 
   @media (max-width: $bp-mobile) {
     font-size: 16px;
@@ -46,6 +48,25 @@ a {
 
 p {
   margin-bottom: $space-md;
+}
+
+// Keyboard focus is always visible.
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid $color-accent;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
 }
 
 blockquote {
@@ -114,6 +135,11 @@ table {
   }
 }
 
+.section-intro {
+  margin: $space-xs 0 0;
+  color: $color-text-light;
+}
+
 .section-heading-link {
   font-size: 0.9rem;
   font-weight: 600;
@@ -125,7 +151,11 @@ table {
 }
 
 .about-page {
-  padding: $space-xl $space-md $space-2xl;
+  padding: 0 $space-md $space-2xl;
+
+  .breadcrumbs {
+    margin-bottom: $space-lg;
+  }
 }
 
 .not-found {
@@ -136,4 +166,147 @@ table {
     color: $color-text-light;
     margin-bottom: $space-lg;
   }
+}
+
+.site-main {
+  min-height: 60vh;
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.4rem;
+  background: $color-accent;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  border: 1.5px solid $color-accent;
+  border-radius: $radius-sm;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+
+  &:hover {
+    background: $color-accent-dark;
+    border-color: $color-accent-dark;
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+  color: $color-accent;
+
+  &:hover {
+    background: rgba($color-accent, 0.08);
+    border-color: $color-accent;
+    color: $color-accent-dark;
+  }
+}
+
+// For dark backgrounds.
+.btn--light {
+  background: #fff;
+  border-color: #fff;
+  color: $color-accent-dark;
+
+  &:hover {
+    background: $color-bg;
+    border-color: $color-bg;
+    color: $color-accent-dark;
+  }
+}
+
+.btn--small {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+.arrow-link {
+  font-weight: 600;
+}
+
+// Title and lead at the top of a plain page.
+.page-header {
+  max-width: $content-width;
+  padding: $space-xl 0 $space-sm;
+
+  h1 {
+    margin-bottom: $space-sm;
+  }
+}
+
+.page-lead {
+  font-size: 1.1rem;
+  color: $color-text-light;
+}
+
+// Where the page sits in the site.
+.breadcrumbs {
+  padding-top: $space-lg;
+  font-size: 0.8rem;
+  color: $color-text-light;
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+  }
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+
+    + li::before {
+      content: "/";
+      margin: 0 $space-sm;
+      color: $color-border;
+    }
+  }
+
+  a {
+    color: $color-text-light;
+  }
+
+  [aria-current] {
+    display: inline-block;
+    max-width: 22rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $color-text;
+  }
+}
+
+// A list where every line is a point made, each with a tick.
+.check-list {
+  list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: $space-sm;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0.1rem;
+      top: 0.5em;
+      width: 0.75rem;
+      height: 0.4rem;
+      border-left: 2px solid $color-accent;
+      border-bottom: 2px solid $color-accent;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.check-list--compact li {
+  font-size: 0.92rem;
 }

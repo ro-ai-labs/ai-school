@@ -1,0 +1,207 @@
+# Facts about the author. One source for the author page, the author boxes and
+# the structured data (JSON-LD) that search engines and AI assistants read on
+# every page, so they can never disagree.
+#
+# Every fact comes from the author's own public pages, read on 2026-11-18:
+# ai-labs.ro/mihai-cvasnievschi/, ai-labs.ro/speaking/, ai-leaders.ro,
+# lets-talk-ai.ro and ship-it-with.ai/about-the-author/.
+# When a fact changes there, change it here and bump "updated".
+
+name: "Mihai Cvasnievschi"
+given_name: "Mihai"
+family_name: "Cvasnievschi"
+path: "/mihai-cvasnievschi/"
+updated: 2026-11-18
+image: "/assets/img/mihai-cvasnievschi.jpg"
+image_size: 1040
+linkedin: "https://www.linkedin.com/in/mihaicvasnievschi/"
+
+# Other pages that are about the same person.
+same_as:
+  - "https://www.linkedin.com/in/mihaicvasnievschi/"
+  - "https://ai-labs.ro/mihai-cvasnievschi/"
+  - "https://ship-it-with.ai/about-the-author/"
+
+elsewhere:
+  - label:
+      en: "LinkedIn"
+      ro: "LinkedIn"
+    url:
+      en: "https://www.linkedin.com/in/mihaicvasnievschi/"
+      ro: "https://www.linkedin.com/in/mihaicvasnievschi/"
+  - label:
+      en: "Profile on AI Labs"
+      ro: "Profilul de pe AI Labs"
+    url:
+      en: "https://ai-labs.ro/mihai-cvasnievschi/"
+      ro: "https://ai-labs.ro/ro/mihai-cvasnievschi/"
+  - label:
+      en: "Author page of Ship It With AI"
+      ro: "Pagina de autor Ship It With AI"
+    url:
+      en: "https://ship-it-with.ai/about-the-author/"
+      ro: "https://ship-it-with.ai/ro/about-the-author/"
+
+city: "Bucharest"
+country_code: "RO"
+country: "Romania"
+location:
+  en: "Bucharest, Romania"
+  ro: "București, România"
+languages: ["ro", "en"]
+language_names:
+  en: "Romanian, English"
+  ro: "română, engleză"
+
+job_title:
+  en: "AI/ML Architect, AI Strategy Consultant and Mentor"
+  ro: "Arhitect AI/ML, consultant în strategie AI și mentor"
+
+tagline:
+  en: "AI/ML architect, mentor and author in Bucharest"
+  ro: "Arhitect AI/ML, mentor și autor, în București"
+
+# The paragraph a search engine or an AI assistant is most likely to quote.
+description:
+  en: "Mihai Cvasnievschi is an AI/ML architect, AI strategy consultant and mentor based in Bucharest, Romania. He has 25+ years in software and has worked in AI since 2013. He writes AI School, a free AI literacy school for everybody, and mentors founders, CTOs and managers who own AI adoption. He is the founder of AI Labs, AI Leaders Romania and the Let's Talk AI community, and the author of Ship It With AI, a free manual on AI coding agents."
+  ro: "Mihai Cvasnievschi este arhitect AI/ML, consultant în strategie AI și mentor, în București. Are peste 25 de ani în software și lucrează în AI din 2013. Scrie AI School, o școală gratuită de AI literacy pentru toată lumea, și este mentor pentru fondatori, CTO și manageri care răspund de adoptarea AI. Este fondatorul AI Labs, AI Leaders Romania și al comunității Let's Talk AI și autorul manualului gratuit Ship It With AI, despre agenții AI pentru programare."
+
+short:
+  en: "AI/ML architect and mentor in Bucharest, with 25+ years in software and in AI since 2013. Founder of AI Labs, AI Leaders Romania and Let's Talk AI."
+  ro: "Arhitect AI/ML și mentor în București, cu peste 25 de ani în software și în AI din 2013. Fondator AI Labs, AI Leaders Romania și Let's Talk AI."
+
+knows_about:
+  - "Artificial intelligence"
+  - "AI literacy"
+  - "Generative AI"
+  - "Large language models"
+  - "Retrieval-augmented generation"
+  - "AI agents"
+  - "AI coding agents"
+  - "AI strategy"
+  - "AI adoption"
+  - "AI mentoring"
+  - "AI training"
+  - "Machine learning"
+  - "MLOps"
+  - "Edge AI"
+  - "EU AI Act"
+  - "AI governance"
+
+glance:
+  - label:
+      en: "Role"
+      ro: "Rol"
+    value:
+      en: "Founder of AI Labs. AI/ML architect, consultant and mentor."
+      ro: "Fondator AI Labs. Arhitect AI/ML, consultant și mentor."
+  - label:
+      en: "Based in"
+      ro: "Locație"
+    value:
+      en: "Bucharest, Romania"
+      ro: "București, România"
+  - label:
+      en: "Languages"
+      ro: "Limbi"
+    value:
+      en: "Romanian, English"
+      ro: "română, engleză"
+  - label:
+      en: "Experience"
+      ro: "Experiență"
+    value:
+      en: "25+ years in software. In AI since 2013. 20+ AI projects shipped."
+      ro: "Peste 25 de ani în software. În AI din 2013. Peste 20 de proiecte AI livrate."
+  - label:
+      en: "Writes"
+      ro: "Scrie"
+    value:
+      en: "AI School, free AI literacy for everybody, and Ship It With AI, a free manual on AI coding agents."
+      ro: "AI School, AI literacy gratuit pentru toată lumea, și Ship It With AI, un manual gratuit despre agenții AI pentru programare."
+  - label:
+      en: "Community"
+      ro: "Comunitate"
+    value:
+      en: "Founder of Let's Talk AI, the free monthly AI mixer in Bucharest, and of AI Leaders Romania."
+      ro: "Fondatorul Let's Talk AI, mixerul lunar gratuit despre AI din București, și al AI Leaders Romania."
+
+topics:
+  - title:
+      en: "AI literacy"
+      ro: "AI literacy"
+    text:
+      en: "What every person at work needs to know to use AI well. This is what AI School teaches."
+      ro: "Ce trebuie să știe orice om la locul de muncă pentru a folosi bine AI. Asta predă AI School."
+  - title:
+      en: "AI strategy"
+      ro: "Strategie AI"
+    text:
+      en: "Where AI pays off in a company, in what order and at what cost."
+      ro: "Unde merită AI într-o companie, în ce ordine și cu ce costuri."
+  - title:
+      en: "LLM, RAG and agent systems"
+      ro: "Sisteme cu LLM, RAG și agenți"
+    text:
+      en: "How to design them, who should build them and how to keep delivery on track."
+      ro: "Cum le proiectezi, cine le construiește și cum ții livrarea pe drumul bun."
+  - title:
+      en: "AI coding agents"
+      ro: "Agenți AI pentru programare"
+    text:
+      en: "How software teams change when coding agents arrive. The subject of the manual Ship It With AI."
+      ro: "Cum se schimbă echipele de software când apar agenții AI pentru programare. Subiectul manualului Ship It With AI."
+  - title:
+      en: "EU AI Act"
+      ro: "AI Act"
+    text:
+      en: "AI literacy under Article 4 and an internal AI policy."
+      ro: "Alfabetizare AI, conform articolului 4, și politică internă despre AI."
+  - title:
+      en: "Edge AI and MLOps"
+      ro: "Edge AI și MLOps"
+    text:
+      en: "AI that holds up in production and in real infrastructure, not only in a demo."
+      ro: "AI care rezistă în producție și în infrastructura reală, nu doar în demo."
+
+experience:
+  - en: "25+ years in software, including years in London building systems for CME Group and IHS Markit."
+    ro: "Peste 25 de ani în software, inclusiv ani la Londra, unde a construit sisteme pentru CME Group și IHS Markit."
+  - en: "In AI since 2013, starting at Stefanini, where he built the company's first machine learning practice for EMEA."
+    ro: "Lucrează în AI din 2013, când a început la Stefanini, unde a construit prima practică de machine learning a companiei pentru EMEA."
+  - en: "Led a 60-person engineering organisation as VP of Engineering."
+    ro: "A condus, ca VP of Engineering, o organizație de inginerie de 60 de oameni."
+  - en: "Designed a self-hosted AI platform, with RAG and agents, for a national telecom operator."
+    ro: "A proiectat o platformă AI self-hosted, cu RAG și agenți, pentru un operator național de telecom."
+  - en: "Worked on speech-to-text and language understanding for medical reports in Romanian."
+    ro: "A lucrat la speech-to-text și înțelegerea limbajului pentru rapoarte medicale în română."
+  - en: "Presented an AI demo on neuromorphic chips at CES 2024 and Embedded World 2024."
+    ro: "A prezentat un demo de AI pe cipuri neuromorfice la CES 2024 și Embedded World 2024."
+  - en: "Has delivered for telecom, banking and finance, retail, logistics, insurance, healthcare, manufacturing, energy and semiconductors."
+    ro: "A livrat pentru telecom, banking și finanțe, retail, logistică, asigurări, sănătate, producție, energie și semiconductori."
+  - en: "Certifications: Google Cloud Machine Learning specialisations and IBM Fundamentals of Scalable Data Science."
+    ro: "Certificări: specializările Google Cloud Machine Learning și IBM Fundamentals of Scalable Data Science."
+
+talks:
+  - date: 2026-10-31
+    where:
+      en: "Keynote at I Love Tech Bucharest"
+      ro: "Keynote la I Love Tech București"
+    title: "How Agentic AI Coding Democratizes Application Development"
+  - date: 2026-04-01
+    where:
+      en: "Founder Institute CEE, online session"
+      ro: "Founder Institute CEE, sesiune online"
+    title: "How to Start Solo with AI: Learn the New Founder Playbook"
+  - date: 2025-05-28
+    where:
+      en: "Politehnica Bucharest, Faculty of Automatic Control and Computers"
+      ro: "Politehnica București, Facultatea de Automatică și Calculatoare"
+    title_plain:
+      en: "A talk on adapting your skills to the trends ahead"
+      ro: "O prezentare despre cum îți adaptezi abilitățile la trendurile care vin"
+  - date: 2024-02-05
+    where:
+      en: "RO AI Alliance Bucharest"
+      ro: "RO AI Alliance București"
+    title: "A Quick Introduction to Spiking Neural Networks"

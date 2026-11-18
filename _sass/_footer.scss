@@ -1,8 +1,19 @@
 .site-footer {
-  background: $color-text;
-  color: rgba(255, 255, 255, 0.7);
-  padding: $space-2xl 0 $space-lg;
   margin-top: $space-2xl;
+  padding: $space-xl 0 $space-lg;
+  background: $color-text;
+  color: rgba(#fff, 0.75);
+  font-size: 0.9rem;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
 }
 
 .footer-inner {
@@ -11,8 +22,18 @@
   padding: 0 $space-lg;
 }
 
-.footer-brand {
-  margin-bottom: $space-xl;
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.2fr 1fr;
+  gap: $space-lg $space-xl;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: $bp-mobile) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .footer-logo {
@@ -20,90 +41,47 @@
   font-size: 1.4rem;
   font-weight: 700;
   color: #fff;
-  display: block;
-  margin-bottom: $space-sm;
 }
 
 .footer-tagline {
-  font-size: 0.9rem;
-  max-width: 400px;
+  max-width: 22rem;
+  margin: $space-sm 0;
 }
 
-.footer-links {
-  display: flex;
-  gap: $space-lg;
-  margin-bottom: $space-lg;
-
-  a {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
-
-    &:hover {
-      color: #fff;
-      text-decoration: none;
-    }
-  }
+.footer-author {
+  margin: 0;
 }
 
-// The author's other projects, on every page.
-.footer-projects {
-  margin-bottom: $space-lg;
-}
-
-.footer-projects-title {
+.footer-col-title {
   display: block;
-  font-size: 0.75rem;
+  margin-bottom: $space-sm;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: $space-sm;
+  letter-spacing: 0.1em;
+  color: rgba(#fff, 0.6);
 }
 
-.footer-projects-list {
+.footer-list {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: $space-sm $space-lg;
 
-  a {
-    color: #fff;
-    font-size: 0.9rem;
-
-    &:hover {
-      color: $color-primary;
-      text-decoration: none;
-    }
-  }
-}
-
-.footer-social {
-  margin-bottom: $space-xl;
-
-  a {
-    display: inline-flex;
-    align-items: center;
-    padding: $space-xs $space-md;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.85rem;
-
-    &:hover {
-      border-color: $color-primary;
-      color: #fff;
-      text-decoration: none;
-    }
+  li {
+    margin-bottom: $space-xs;
   }
 }
 
 .footer-bottom {
-  padding-top: $space-lg;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $space-xs $space-lg;
+  margin-top: $space-lg;
+  padding-top: $space-md;
+  border-top: 1px solid rgba(#fff, 0.12);
   font-size: 0.8rem;
 
   p {
-    margin-bottom: $space-xs;
+    margin: 0;
   }
 }
 

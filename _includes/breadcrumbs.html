@@ -1,0 +1,14 @@
+{%- comment -%}
+  Where the page sits in the site.
+  Usage: {% include breadcrumbs.html label=page.title section="articles" %}
+  "section" is optional; "articles" adds the Articles step.
+{%- endcomment -%}
+<nav class="breadcrumbs" aria-label="{% t global.breadcrumb %}">
+  <ol>
+    <li><a href="{{ site.baseurl }}/">{% t nav.home %}</a></li>
+    {%- if include.section == "articles" %}
+    <li><a href="{{ site.baseurl }}/articles/">{% t nav.articles %}</a></li>
+    {%- endif %}
+    <li aria-current="page">{{ include.label }}</li>
+  </ol>
+</nav>

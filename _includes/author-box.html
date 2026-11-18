@@ -1,11 +1,21 @@
+{%- assign me = site.data.person -%}
 <aside class="author-box" aria-labelledby="author-box-title">
   <h2 class="author-box-title" id="author-box-title">{% t author.title %}</h2>
-  <p class="author-box-bio">{% t author.bio %}</p>
+  <div class="author-box-main">
+    {% include author-photo.html class="author-box-photo" sizes="88px" %}
+    <div class="author-box-text">
+      <p class="author-box-bio"><a class="author-box-name" href="{{ site.baseurl }}{{ me.path }}" rel="author">{{ me.name }}</a> {% t author.bio %}</p>
+      <p class="author-box-actions">
+        <a class="btn btn--small" href="{{ site.baseurl }}{{ me.path }}">{% t author.profile %}</a>
+        <a class="btn btn--small btn--ghost" href="{{ site.baseurl }}/ai-mentorship/">{% t author.mentorship %}</a>
+      </p>
+    </div>
+  </div>
   <p class="author-box-more">{% t author.more %}</p>
   <ul class="author-box-projects">
     {% for proj in site.data.projects %}
     <li><a href="{% include project-url.html project=proj placement='article' %}" target="_blank" rel="noopener">{{ proj.name }}</a>: {{ proj.tagline[site.lang] }}</li>
     {% endfor %}
   </ul>
-  <a class="author-box-linkedin" href="https://www.linkedin.com/in/mihaicvasnievschi/" target="_blank" rel="noopener">{% t author.linkedin %} &rarr;</a>
+  <a class="author-box-linkedin" href="{{ me.linkedin }}" target="_blank" rel="noopener me">{% t author.linkedin %} &rarr;</a>
 </aside>

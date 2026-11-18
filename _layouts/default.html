@@ -6,19 +6,43 @@
 <body>
   {% include nav.html %}
 
-  <main class="site-main">
+  <main class="site-main" id="main">
     {{ content }}
   </main>
 
   {% include footer.html %}
 
   <script>
-    // Mobile nav toggle
-    document.querySelector('.nav-toggle').addEventListener('click', function() {
-      const expanded = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', !expanded);
-      document.querySelector('.nav-links').classList.toggle('nav-links--open');
-    });
+    (function () {
+      // Mobile menu
+      var toggle = document.querySelector('.nav-toggle');
+      var links = document.getElementById('nav-links');
+      if (toggle && links) {
+        toggle.addEventListener('click', function () {
+          var open = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!open));
+          links.classList.toggle('nav-links--open');
+        });
+      }
+
+      // Reading progress on articles
+      var bar = document.querySelector('.reading-progress-bar');
+      var body = document.querySelector('.article-body');
+      if (bar && body) {
+        var ticking = false;
+        var update = function () {
+          var rect = body.getBoundingClientRect();
+          var total = rect.height - window.innerHeight * 0.6;
+          var done = Math.min(Math.max(-rect.top / (total > 0 ? total : 1), 0), 1);
+          bar.style.transform = 'scaleX(' + done + ')';
+          ticking = false;
+        };
+        window.addEventListener('scroll', function () {
+          if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+        }, { passive: true });
+        update();
+      }
+    })();
   </script>
 </body>
 </html>

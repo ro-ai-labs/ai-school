@@ -1,0 +1,12 @@
+{%- comment -%}
+  The author's portrait, in two sizes and two formats.
+  Usage: {% include author-photo.html class="author-box-photo" sizes="88px" %}
+  Pass eager=true for the one portrait at the top of a page.
+{%- endcomment -%}
+{%- capture portrait_alt -%}{% t global.author_image_alt %}{%- endcapture -%}
+{%- assign portrait = site.baseurl_root | append: "/assets/img/mihai-cvasnievschi" -%}
+{%- assign portrait_sizes = include.sizes | default: "160px" -%}
+<picture>
+  <source type="image/webp" srcset="{{ portrait }}-160.webp 160w, {{ portrait }}-480.webp 480w" sizes="{{ portrait_sizes }}">
+  <img class="{{ include.class }}" src="{{ portrait }}-480.jpg" srcset="{{ portrait }}-160.jpg 160w, {{ portrait }}-480.jpg 480w" sizes="{{ portrait_sizes }}" width="480" height="480" alt="{{ portrait_alt | escape_once }}"{% if include.eager %} fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async">
+</picture>

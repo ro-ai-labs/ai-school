@@ -1,41 +1,76 @@
-// "About the author" under every article: who wrote it and what else he does.
-
+// "About the author", under every article.
 .author-box {
   margin-bottom: $space-lg;
   padding: $space-lg;
   background: $color-bg-card;
   border: 1px solid $color-border;
   border-left: 3px solid $color-accent;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 $radius $radius 0;
+  box-shadow: $shadow-sm;
 }
 
 .author-box-title {
+  margin: 0 0 $space-md;
   font-family: $font-body;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: $color-text-light;
-  margin: 0 0 $space-sm;
+}
+
+.author-box-main {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-md;
+
+  picture {
+    flex-shrink: 0;
+    line-height: 0;
+  }
+}
+
+.author-box-photo {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  @media (max-width: $bp-mobile) {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 .author-box-bio {
-  font-size: 0.95rem;
+  margin-bottom: $space-sm;
+}
+
+.author-box-name {
+  font-weight: 700;
+  color: $color-text;
+}
+
+.author-box-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+  margin-bottom: 0;
 }
 
 .author-box-more {
-  font-size: 0.85rem;
+  margin: $space-md 0 $space-xs;
+  font-size: 0.9rem;
   color: $color-text-light;
-  margin-bottom: $space-xs;
 }
 
 .author-box-projects {
   list-style: none;
   margin-bottom: $space-md;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 
   li {
-    padding: $space-xs 0;
+    margin-bottom: $space-xs;
   }
 
   a {
@@ -44,6 +79,6 @@
 }
 
 .author-box-linkedin {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
 }

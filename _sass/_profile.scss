@@ -1,0 +1,390 @@
+// The author page (/mihai-cvasnievschi/) and the mentorship page (/ai-mentorship/).
+
+.profile,
+.mentorship {
+  padding-bottom: $space-xl;
+}
+
+.profile-hero {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: $space-xl;
+  align-items: center;
+  padding: $space-lg 0 $space-xl;
+  border-bottom: 1px solid $color-border;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+    gap: $space-lg;
+  }
+}
+
+// The portrait sits on a gold block set slightly off, like a printed plate.
+.profile-photo-frame {
+  position: relative;
+  width: 240px;
+  max-width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: -14px;
+    bottom: -14px;
+    border-radius: $radius;
+    background: rgba($color-primary, 0.4);
+  }
+
+  picture {
+    position: relative;
+    display: block;
+    line-height: 0;
+  }
+
+  @media (max-width: $bp-mobile) {
+    width: 160px;
+  }
+}
+
+.profile-photo {
+  width: 100%;
+  height: auto;
+  border-radius: $radius;
+  box-shadow: $shadow-md;
+}
+
+.profile-name {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: $space-sm 0 $space-xs;
+}
+
+.profile-tagline {
+  font-family: $font-heading;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: $color-text-light;
+}
+
+.profile-lead {
+  max-width: 44rem;
+  font-size: 1.05rem;
+}
+
+.profile-actions,
+.mentorship-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-md;
+  margin: $space-md 0 0;
+}
+
+.profile-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: $space-xl;
+  align-items: start;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.profile-main {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  section:first-child h2 {
+    margin-top: $space-lg;
+  }
+}
+
+.profile-aside,
+.mentor-card {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  padding: $space-lg;
+  box-shadow: $shadow-sm;
+
+  h2 {
+    margin: 0 0 $space-md;
+    font-family: $font-body;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-text-light;
+  }
+}
+
+.profile-aside {
+  position: sticky;
+  top: $nav-height + 24px;
+  margin-top: $space-lg;
+
+  .profile-aside-title {
+    margin-top: $space-lg;
+  }
+
+  @media (max-width: $bp-tablet) {
+    position: static;
+  }
+}
+
+.glance {
+  div {
+    padding: $space-sm 0;
+    border-top: 1px solid $color-border;
+
+    &:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
+
+  dt {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-text-light;
+  }
+
+  dd {
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+}
+
+.elsewhere {
+  list-style: none;
+  font-size: 0.92rem;
+
+  li {
+    margin-bottom: $space-xs;
+  }
+}
+
+.profile-updated {
+  margin: $space-md 0 0;
+  font-size: 0.8rem;
+  color: $color-text-light;
+}
+
+.topic-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-md;
+  list-style: none;
+
+  li {
+    padding: $space-md;
+    background: $color-bg-card;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: $color-text-light;
+  }
+
+  strong {
+    display: block;
+    margin-bottom: $space-xs;
+    font-family: $font-heading;
+    font-size: 1.05rem;
+    color: $color-text;
+  }
+
+  @media (max-width: $bp-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.talk-list {
+  list-style: none;
+
+  li {
+    display: grid;
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    gap: 0 $space-md;
+    padding: $space-sm 0;
+    border-top: 1px solid $color-border;
+  }
+
+  time {
+    grid-row: 1 / span 2;
+    padding-top: 0.15rem;
+    font-size: 0.85rem;
+    color: $color-text-light;
+  }
+
+  @media (max-width: $bp-mobile) {
+    li {
+      grid-template-columns: 1fr;
+    }
+
+    time {
+      grid-row: auto;
+    }
+  }
+}
+
+.talk-where {
+  font-weight: 600;
+}
+
+.talk-title {
+  font-family: $font-heading;
+  font-style: italic;
+  color: $color-text-light;
+}
+
+// Mentorship page
+.mentorship-hero {
+  max-width: 46rem;
+  padding: $space-lg 0 $space-xl;
+
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: $space-sm 0 $space-md;
+  }
+}
+
+.mentorship-lead {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.fact-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+  list-style: none;
+  margin: $space-md 0 $space-lg;
+
+  li {
+    padding: 0.3rem 0.9rem;
+    background: $color-bg-card;
+    border: 1px solid $color-border;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+}
+
+.mentorship-note {
+  margin: $space-sm 0 0;
+  font-size: 0.85rem;
+  color: $color-text-light;
+}
+
+.mentorship-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: $space-xl;
+  align-items: start;
+  padding-top: $space-lg;
+  border-top: 1px solid $color-border;
+
+  > section:first-child h2 {
+    margin-top: 0;
+  }
+
+  .check-list {
+    margin-top: $space-md;
+  }
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+    gap: $space-lg;
+  }
+}
+
+.mentor-card-head {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  margin-bottom: $space-md;
+
+  picture {
+    flex-shrink: 0;
+    line-height: 0;
+  }
+}
+
+.mentor-card-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mentor-card-name {
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.mentor-card-tagline {
+  margin: 0;
+  font-size: 0.9rem;
+  color: $color-text-light;
+}
+
+.faq {
+  max-width: 48rem;
+}
+
+.faq-item {
+  border-top: 1px solid $color-border;
+
+  &:last-of-type {
+    border-bottom: 1px solid $color-border;
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-md;
+    padding: $space-md 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: $font-heading;
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      content: "+";
+      flex-shrink: 0;
+      font-family: $font-body;
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1;
+      color: $color-accent;
+    }
+  }
+
+  &[open] summary::after {
+    content: "\2212";
+  }
+
+  p {
+    max-width: 44rem;
+    margin: 0;
+    padding-bottom: $space-md;
+    color: $color-text-light;
+  }
+}

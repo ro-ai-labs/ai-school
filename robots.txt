@@ -2,7 +2,24 @@
 layout: null
 permalink: /robots.txt
 ---
+# Everything on AI School is free to read, for people and for machines.
 User-agent: *
+Allow: /
+
+# AI assistants and AI search are welcome too. They are named so there is no doubt.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: meta-externalagent
+User-agent: MistralAI-User
 Allow: /
 
 Sitemap: {{ site.url }}{{ site.baseurl_root }}/sitemap.xml

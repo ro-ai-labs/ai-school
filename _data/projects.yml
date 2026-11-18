@@ -4,8 +4,17 @@
 # To add a project, add an entry with the same fields, with "id" first (the site
 # check counts entries by it). Text fields have one value
 # per site language (en, ro). Facts checked against each live site on 2026-11-13.
+# "help" is the line shown on the mentorship page. "schema_type", "schema_id" and
+# "relation" describe the project to search engines (founder of an organisation,
+# author of a book); schema_id matches the id each project uses on its own site.
 
 - id: lets-talk-ai
+  schema_type: "Organization"
+  schema_id: "https://lets-talk-ai.ro/#org"
+  relation: "founder"
+  help:
+    en: "Free and in person. A monthly AI mixer in Bucharest where people who work with AI tell you how it really goes."
+    ro: "Gratuit și față în față. Un mixer lunar despre AI, la București, unde oameni care lucrează cu AI îți spun cum merge de fapt."
   name: "Let's Talk AI"
   url:
     en: "https://lets-talk-ai.ro/"
@@ -27,6 +36,12 @@
     ro: "Vezi următoarea ediție"
 
 - id: ai-labs
+  schema_type: "Organization"
+  schema_id: "https://ai-labs.ro/#org"
+  relation: "founder"
+  help:
+    en: "For a team. AI strategy and hands-on workshops for companies in Romania, starting with a free call."
+    ro: "Pentru o echipă. Strategie AI și workshop-uri practice pentru companii din România, pornind de la un call gratuit."
   name: "AI Labs"
   url:
     en: "https://ai-labs.ro/"
@@ -48,6 +63,12 @@
     ro: "Vezi AI Labs"
 
 - id: ai-leaders
+  schema_type: "Organization"
+  schema_id: "https://ai-leaders.ro/#org"
+  relation: "founder"
+  help:
+    en: "For a company decision. A team of senior AI experts in Romania who have taken AI to production."
+    ro: "Pentru o decizie de companie. O echipă de experți AI seniori din România, care au dus AI în producție."
   name: "AI Leaders Romania"
   url:
     en: "https://ai-leaders.ro/en/"
@@ -69,6 +90,12 @@
     ro: "Vezi experții"
 
 - id: ship-it-with-ai
+  schema_type: "Book"
+  schema_id: "https://ship-it-with.ai/#book"
+  relation: "author"
+  help:
+    en: "For engineers. A free manual on shipping software with AI coding agents."
+    ro: "Pentru ingineri. Un manual gratuit despre cum livrezi software cu agenți AI pentru programare."
   name: "Ship It With AI"
   url:
     en: "https://ship-it-with.ai/"

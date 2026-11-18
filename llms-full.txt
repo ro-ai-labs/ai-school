@@ -1,0 +1,28 @@
+---
+layout: null
+permalink: /llms-full.txt
+---
+# AI School: full text
+{% assign me = site.data.person -%}
+{%- assign origin = site.url | append: site.baseurl -%}
+{%- assign lessons = site.posts | sort: "series_order" %}
+Author: {{ me.name }} ({{ origin }}{{ me.path }})
+
+{{ me.description[site.lang] }}
+
+Every article below is free to read, quote and share. Source: {{ origin }}/
+{% for post in lessons -%}
+{%- unless site.data.untranslated[site.lang] contains post.slug %}
+
+--------------------------------------------------------------------------------
+
+## {{ post.title }}
+
+URL: {{ origin }}{{ post.url }}
+Published: {{ post.date | date: "%Y-%m-%d" }}
+Author: {{ post.author }}
+{% if post.series %}Series: {{ post.series }}, part {{ post.series_order }}
+{% endif %}
+{{ post.content | strip_html | replace: "&amp;", "&" | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&quot;", '"' | replace: "&#39;", "'" }}
+{%- endunless -%}
+{%- endfor %}

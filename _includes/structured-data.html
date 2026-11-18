@@ -1,0 +1,240 @@
+{%- comment -%}
+  Structured data (JSON-LD) for search engines and AI assistants. It says, on
+  every page, what this site is, who writes it and which other projects are his,
+  and then describes the page itself.
+
+  The facts about the author come from _data/person.yml, the projects from
+  _data/projects.yml and the FAQ from _data/mentorship.yml, the same files the
+  visible pages are built from.
+
+  Included by head.html, which sets page_title, page_description_plain,
+  canonical_url, share_image, site_title and site_description.
+  Every value goes through "jsonify", which quotes and escapes it.
+{%- endcomment -%}
+{%- assign me = site.data.person -%}
+{%- assign root = site.url | append: site.baseurl_root -%}
+{%- assign lang_root = site.url | append: site.baseurl -%}
+{%- assign person_id = root | append: me.path | append: "#person" -%}
+{%- assign website_id = root | append: "/#website" -%}
+{%- assign school_id = root | append: "/#school" -%}
+{%- assign page_id = canonical_url | append: "#webpage" -%}
+{%- assign home_url = lang_root | append: "/" -%}
+{%- assign articles_url = lang_root | append: "/articles/" -%}
+{%- assign profile_url = lang_root | append: me.path -%}
+{%- capture author_image_alt -%}{% t global.author_image_alt %}{%- endcapture -%}
+{%- capture crumb_home -%}{% t nav.home %}{%- endcapture -%}
+{%- capture crumb_articles -%}{% t nav.articles %}{%- endcapture -%}
+
+{%- assign placeholder = false -%}
+{%- if site.data.untranslated[site.lang] contains page.slug -%}
+  {%- assign placeholder = true -%}
+{%- endif -%}
+{%- if page.layout == "article" -%}
+  {%- assign kind = "article" -%}
+{%- elsif page.url == "/" -%}
+  {%- assign kind = "home" -%}
+{%- elsif page.url == me.path -%}
+  {%- assign kind = "profile" -%}
+{%- elsif page.url == "/ai-mentorship/" -%}
+  {%- assign kind = "mentorship" -%}
+{%- elsif page.url == "/about/" -%}
+  {%- assign kind = "about" -%}
+{%- elsif page.url == "/articles/" -%}
+  {%- assign kind = "collection" -%}
+{%- else -%}
+  {%- assign kind = "page" -%}
+{%- endif -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+{%- if kind == "article" and placeholder == false %}
+    {
+      "@type": "Article",
+      "@id": {{ canonical_url | append: "#article" | jsonify }},
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page_description_plain | jsonify }},
+      "image": {{ share_image | jsonify }},
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }},
+      "author": { "@id": {{ person_id | jsonify }} },
+      "publisher": { "@id": {{ school_id | jsonify }} },
+      "mainEntityOfPage": {{ canonical_url | jsonify }},
+      "isPartOf": { "@id": {{ website_id | jsonify }} },
+{%- if page.reading_time %}
+      "timeRequired": {{ "PT" | append: page.reading_time | append: "M" | jsonify }},
+{%- endif %}
+{%- if page.series %}
+      "articleSection": {{ page.series | jsonify }},
+{%- endif %}
+      "isAccessibleForFree": true
+    },
+{%- elsif kind == "profile" %}
+    {
+      "@type": "ProfilePage",
+      "@id": {{ page_id | jsonify }},
+      "url": {{ canonical_url | jsonify }},
+      "name": {{ page_title | jsonify }},
+      "description": {{ page_description_plain | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }},
+      "isPartOf": { "@id": {{ website_id | jsonify }} },
+      "dateModified": {{ me.updated | date: "%Y-%m-%d" | jsonify }},
+      "mainEntity": { "@id": {{ person_id | jsonify }} }
+    },
+{%- elsif kind == "mentorship" %}
+{%- capture service_name -%}{% t mentorship.heading %}{%- endcapture %}
+    {
+      "@type": "WebPage",
+      "@id": {{ page_id | jsonify }},
+      "url": {{ canonical_url | jsonify }},
+      "name": {{ page_title | jsonify }},
+      "description": {{ page_description_plain | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }},
+      "isPartOf": { "@id": {{ website_id | jsonify }} },
+      "about": { "@id": {{ person_id | jsonify }} }
+    },
+    {
+      "@type": "Service",
+      "@id": {{ canonical_url | append: "#service" | jsonify }},
+      "name": {{ service_name | jsonify }},
+      "serviceType": "AI mentoring",
+      "description": {{ site.data.mentorship.lead[site.lang] | jsonify }},
+      "url": {{ canonical_url | jsonify }},
+      "provider": { "@id": {{ person_id | jsonify }} },
+      "availableLanguage": {{ me.languages | jsonify }},
+      "areaServed": [
+        { "@type": "Country", "name": "Romania" },
+        { "@type": "AdministrativeArea", "name": "European Union" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": {{ canonical_url | append: "#faq" | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }},
+      "mainEntity": [
+{%- for item in site.data.mentorship.faq %}
+        {
+          "@type": "Question",
+          "name": {{ item.q[site.lang] | jsonify }},
+          "acceptedAnswer": { "@type": "Answer", "text": {{ item.a[site.lang] | jsonify }} }
+        }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+      ]
+    },
+{%- elsif kind == "collection" %}
+{%- assign listed = site.posts | sort: "series_order" %}
+    {
+      "@type": "CollectionPage",
+      "@id": {{ page_id | jsonify }},
+      "url": {{ canonical_url | jsonify }},
+      "name": {{ page_title | jsonify }},
+      "description": {{ page_description_plain | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }},
+      "isPartOf": { "@id": {{ website_id | jsonify }} },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+{%- for post in listed %}
+{%- capture listed_url -%}{{ site.url }}{% include post-href.html post=post %}{%- endcapture %}
+          { "@type": "ListItem", "position": {{ forloop.index }}, "name": {{ post.title | jsonify }}, "url": {{ listed_url | jsonify }} }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+        ]
+      }
+    },
+{%- else %}
+    {
+      "@type": {% if kind == "about" %}"AboutPage"{% else %}"WebPage"{% endif %},
+      "@id": {{ page_id | jsonify }},
+      "url": {{ canonical_url | jsonify }},
+      "name": {{ page_title | jsonify }},
+      "description": {{ page_description_plain | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }},
+      "isPartOf": { "@id": {{ website_id | jsonify }} },
+      "about": { "@id": {{ school_id | jsonify }} }
+    },
+{%- endif %}
+{%- if kind != "home" %}
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ canonical_url | append: "#breadcrumb" | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": {{ crumb_home | jsonify }}, "item": {{ home_url | jsonify }} },
+{%- if kind == "article" %}
+        { "@type": "ListItem", "position": 2, "name": {{ crumb_articles | jsonify }}, "item": {{ articles_url | jsonify }} },
+        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ canonical_url | jsonify }} }
+{%- elsif kind == "profile" %}
+        { "@type": "ListItem", "position": 2, "name": {{ me.name | jsonify }}, "item": {{ canonical_url | jsonify }} }
+{%- else %}
+        { "@type": "ListItem", "position": 2, "name": {{ share_title | jsonify }}, "item": {{ canonical_url | jsonify }} }
+{%- endif %}
+      ]
+    },
+{%- endif %}
+{%- for proj in site.data.projects %}
+    {
+      "@type": {{ proj.schema_type | jsonify }},
+      "@id": {{ proj.schema_id | jsonify }},
+      "name": {{ proj.name | jsonify }},
+      "url": {{ proj.url[site.lang] | jsonify }},
+      "description": {{ proj.blurb[site.lang] | jsonify }},
+      {% if proj.relation == "author" %}"author"{% else %}"founder"{% endif %}: { "@id": {{ person_id | jsonify }} }
+    },
+{%- endfor %}
+    {
+      "@type": "Organization",
+      "@id": {{ school_id | jsonify }},
+      "name": {{ site_title | jsonify }},
+      "url": {{ home_url | jsonify }},
+      "description": {{ site_description | jsonify }},
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ root | append: "/assets/img/apple-touch-icon.png" | jsonify }},
+        "width": 180,
+        "height": 180
+      },
+      "founder": { "@id": {{ person_id | jsonify }} }
+    },
+    {
+      "@type": "Person",
+      "@id": {{ person_id | jsonify }},
+      "name": {{ me.name | jsonify }},
+      "givenName": {{ me.given_name | jsonify }},
+      "familyName": {{ me.family_name | jsonify }},
+      "url": {{ profile_url | jsonify }},
+      "image": {
+        "@type": "ImageObject",
+        "url": {{ root | append: me.image | jsonify }},
+        "width": {{ me.image_size }},
+        "height": {{ me.image_size }},
+        "caption": {{ author_image_alt | jsonify }}
+      },
+      "jobTitle": {{ me.job_title[site.lang] | jsonify }},
+      "description": {{ me.description[site.lang] | jsonify }},
+      "knowsAbout": {{ me.knows_about | jsonify }},
+      "knowsLanguage": {{ me.languages | jsonify }},
+      "workLocation": {
+        "@type": "Place",
+        "name": {{ me.location[site.lang] | jsonify }},
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": {{ me.city | jsonify }},
+          "addressCountry": {{ me.country_code | jsonify }}
+        }
+      },
+      "worksFor": { "@id": "https://ai-labs.ro/#org" },
+      "sameAs": {{ me.same_as | jsonify }}
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ website_id | jsonify }},
+      "url": {{ home_url | jsonify }},
+      "name": {{ site_title | jsonify }},
+      "description": {{ site_description | jsonify }},
+      "inLanguage": {{ site.lang | jsonify }},
+      "publisher": { "@id": {{ school_id | jsonify }} },
+      "author": { "@id": {{ person_id | jsonify }} }
+    }
+  ]
+}
+</script>

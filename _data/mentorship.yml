@@ -1,0 +1,93 @@
+# Copy for the AI mentorship page (/ai-mentorship/).
+# The offer is the one described on ai-labs.ro/speaking/ under "Mentoring and
+# one-to-one advisory", read on 2026-11-18. Do not add prices, formats or
+# promises here that are not on that page.
+#
+# FAQ answers are plain text, with no HTML: the same text is shown on the page
+# and given to search engines, and the site check fails if the two differ.
+
+booking:
+  en: "https://ai-labs.ro/speaking/"
+  ro: "https://ai-labs.ro/ro/speaker-ai/"
+
+lead:
+  en: "Mihai Cvasnievschi mentors founders, CTOs and managers who own AI adoption in their company. You bring the decision in front of you and get a straight answer from someone who has shipped AI."
+  ro: "Mihai Cvasnievschi este mentor pentru fondatori, CTO și manageri care răspund de adoptarea AI în compania lor. Vii cu decizia pe care o ai de luat și primești un răspuns direct de la cineva care a livrat AI."
+
+facts:
+  - en: "One to one"
+    ro: "Unu la unu"
+  - en: "In Romanian or English"
+    ro: "În română sau în engleză"
+  - en: "From Bucharest, for Romania, the EU and beyond"
+    ro: "Din București, pentru România, UE și restul lumii"
+  - en: "The first 30-minute call is free"
+    ro: "Primul call, de 30 de minute, este gratuit"
+
+bring:
+  - en: "Where AI pays off in your company, and in what order."
+    ro: "Unde merită AI în compania ta și în ce ordine."
+  - en: "Which tools and vendors to trust."
+    ro: "În ce tool-uri și în ce furnizori să ai încredere."
+  - en: "How to design a system with LLMs, RAG or agents, and who should build it."
+    ro: "Cum proiectezi un sistem cu LLM, RAG sau agenți și cine să îl construiască."
+  - en: "How to get a team to really use AI, not only try it."
+    ro: "Cum faci o echipă să folosească AI cu adevărat, nu doar să îl încerce."
+  - en: "What changes in a software team when AI coding agents arrive."
+    ro: "Ce se schimbă într-o echipă de software când apar agenții AI pentru programare."
+  - en: "What the EU AI Act asks of you: AI literacy and an internal AI policy."
+    ro: "Ce îți cere AI Act: alfabetizare AI și o politică internă despre AI."
+
+proof:
+  - en: "25+ years in software and in AI since 2013."
+    ro: "Peste 25 de ani în software și în AI din 2013."
+  - en: "20+ AI projects shipped, across nine industries."
+    ro: "Peste 20 de proiecte AI livrate, în nouă industrii."
+  - en: "Built the first machine learning practice for EMEA at Stefanini."
+    ro: "A construit la Stefanini prima practică de machine learning pentru EMEA."
+  - en: "Designed a self-hosted AI platform, with RAG and agents, for a national telecom operator."
+    ro: "A proiectat o platformă AI self-hosted, cu RAG și agenți, pentru un operator național de telecom."
+
+faq:
+  - q:
+      en: "Who is the AI mentoring for?"
+      ro: "Pentru cine este mentoratul AI?"
+    a:
+      en: "For founders, CTOs and managers who own AI adoption in their company. Mihai works with individuals too, not only with companies."
+      ro: "Pentru fondatori, CTO și manageri care răspund de adoptarea AI în compania lor. Mihai lucrează și cu persoane, nu doar cu firme."
+  - q:
+      en: "How do I start?"
+      ro: "Cum încep?"
+    a:
+      en: "With a free 30-minute call, with no obligation. You book it on the AI Labs site and bring the decision you have in front of you."
+      ro: "Cu un call gratuit de 30 de minute, fără obligații. Îl programezi pe site-ul AI Labs și vii cu decizia pe care o ai de luat."
+  - q:
+      en: "Does Mihai work with people outside Romania?"
+      ro: "Lucrează Mihai și cu oameni din afara României?"
+    a:
+      en: "Yes. Mihai is based in Bucharest and works in Romanian and English, with people in Romania, across the EU and beyond."
+      ro: "Da. Mihai este în București și lucrează în română și în engleză, cu oameni din România, din UE și din restul lumii."
+  - q:
+      en: "Is there a free way to learn about AI?"
+      ro: "Există o cale gratuită de a învăța despre AI?"
+    a:
+      en: "Yes. Every article on AI School is free, with no paywall and no sign-up. Let's Talk AI, the monthly AI mixer in Bucharest, is free too."
+      ro: "Da. Toate articolele AI School sunt gratuite, fără paywall și fără cont. Let's Talk AI, mixerul lunar despre AI din București, este tot gratuit."
+  - q:
+      en: "Where can I find AI experts in Romania?"
+      ro: "Unde găsesc experți AI în România?"
+    a:
+      en: "AI Leaders Romania is a team of senior AI practitioners in Romania who have taken AI to production. Mihai started it in 2026."
+      ro: "AI Leaders Romania este o echipă de practicieni AI seniori din România, care au dus AI în producție. Mihai a pornit-o în 2026."
+  - q:
+      en: "Does Mihai speak at events or train teams?"
+      ro: "Ține Mihai prezentări la evenimente sau traininguri pentru echipe?"
+    a:
+      en: "Yes. He gives keynotes and in-house talks in Romanian or English, and runs hands-on AI workshops for companies through AI Labs."
+      ro: "Da. Ține keynote-uri și prezentări in-house, în română sau în engleză, și workshop-uri practice de AI pentru companii, prin AI Labs."
+  - q:
+      en: "Who is Mihai Cvasnievschi?"
+      ro: "Cine este Mihai Cvasnievschi?"
+    a:
+      en: "Mihai Cvasnievschi is an AI/ML architect, AI strategy consultant and mentor based in Bucharest, Romania. He has 25+ years in software and has worked in AI since 2013. He is the founder of AI Labs and the author of AI School and Ship It With AI."
+      ro: "Mihai Cvasnievschi este arhitect AI/ML, consultant în strategie AI și mentor, în București. Are peste 25 de ani în software și lucrează în AI din 2013. Este fondatorul AI Labs și autorul AI School și al manualului Ship It With AI."

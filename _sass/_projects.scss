@@ -23,10 +23,23 @@
   }
 }
 
+// Five cards read better three across.
+.projects-grid--three {
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: $bp-desktop) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
 .project-card {
   background: $color-bg-card;
   border: 1px solid $color-border;
-  border-radius: 8px;
+  border-radius: $radius;
   padding: $space-lg;
   display: flex;
   flex-direction: column;

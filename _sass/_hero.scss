@@ -1,63 +1,139 @@
+// Home page: the promise on the left, the person who teaches on the right.
 .hero {
-  padding: $space-2xl 0;
-  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: $space-2xl 0 $space-xl;
+  border-bottom: 1px solid $color-border;
+  background:
+    radial-gradient(60rem 28rem at 90% -20%, rgba($color-primary, 0.22), transparent 60%),
+    radial-gradient(44rem 26rem at -10% 0%, rgba($color-accent, 0.10), transparent 60%);
 
   @media (max-width: $bp-mobile) {
-    padding: $space-xl 0;
+    padding: $space-xl 0 $space-lg;
   }
 }
 
 .hero-inner {
-  max-width: 680px;
+  max-width: $site-width;
   margin: 0 auto;
   padding: 0 $space-lg;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+  gap: $space-xl;
+  align-items: center;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+    gap: $space-lg;
+  }
 }
 
-.hero-badge {
+.hero-badge,
+.eyebrow {
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $color-accent;
+}
+
+.hero-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba($color-accent, 0.1);
   margin-bottom: $space-md;
 }
 
 .hero-title {
   font-family: $font-heading;
-  font-size: 2.8rem;
+  font-size: clamp(2.2rem, 5.2vw, 3.5rem);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: $color-text;
-  margin-bottom: $space-lg;
-
-  @media (max-width: $bp-mobile) {
-    font-size: 2rem;
-  }
+  margin-bottom: $space-md;
 }
 
 .hero-subtitle {
   font-size: 1.15rem;
   line-height: 1.7;
   color: $color-text-light;
-  margin-bottom: $space-xl;
+  max-width: 34rem;
+  margin-bottom: $space-lg;
 }
 
-.hero-cta {
-  display: inline-block;
-  padding: $space-sm $space-lg;
-  background: $color-accent;
-  color: #fff;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: background 0.2s ease, transform 0.15s ease;
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-md;
+}
 
-  &:hover {
-    background: darken($color-accent, 8%);
-    color: #fff;
-    text-decoration: none;
-    transform: translateY(-1px);
+.teacher-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: $space-md $space-lg;
+  align-items: start;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  padding: $space-lg;
+  box-shadow: $shadow-md;
+
+  picture {
+    line-height: 0;
   }
+
+  @media (max-width: $bp-mobile) {
+    padding: $space-md;
+    gap: $space-md;
+  }
+}
+
+.teacher-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 3px $color-bg-card, 0 0 0 5px $color-primary;
+
+  @media (max-width: $bp-mobile) {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+.teacher-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-primary-text;
+}
+
+.teacher-name {
+  font-size: 1.35rem;
+  line-height: 1.2;
+  margin: $space-xs 0 $space-sm;
+
+  a {
+    color: $color-text;
+  }
+}
+
+.teacher-bio {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: $color-text-light;
+  margin-bottom: $space-sm;
+}
+
+.teacher-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-xs $space-md;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin: 0;
 }

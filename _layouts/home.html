@@ -1,26 +1,82 @@
 ---
 layout: default
 ---
+{%- assign me = site.data.person -%}
+{%- assign lessons = site.posts | sort: "series_order" -%}
+{%- assign first_lesson = lessons | first -%}
 
 <section class="hero">
   <div class="hero-inner">
-    <span class="hero-badge">GenAI School</span>
-    <h1 class="hero-title">{% t hero.title %}</h1>
-    <p class="hero-subtitle">{% t hero.subtitle %}</p>
-    <a href="{{ site.baseurl }}/articles/" class="hero-cta">{% t hero.cta %}</a>
+    <div class="hero-copy">
+      <span class="hero-badge">{% t hero.badge %}</span>
+      <h1 class="hero-title">{% t hero.title %}</h1>
+      <p class="hero-subtitle">{% t hero.subtitle %}</p>
+      <div class="hero-actions">
+        {%- if first_lesson %}
+        <a href="{% include post-href.html post=first_lesson %}" class="btn"{% if site.data.untranslated[site.lang] contains first_lesson.slug %} data-lang-link="en" hreflang="en"{% endif %}>{% t hero.cta %}</a>
+        {%- endif %}
+        <a href="{{ site.baseurl }}/articles/" class="btn btn--ghost">{% t hero.cta_secondary %}</a>
+      </div>
+    </div>
+
+    <aside class="teacher-card" aria-labelledby="teacher-name">
+      {% include author-photo.html class="teacher-photo" sizes="112px" eager=true %}
+      <div class="teacher-text">
+        <span class="teacher-label">{% t hero.teacher_label %}</span>
+        <h2 class="teacher-name" id="teacher-name"><a href="{{ site.baseurl }}{{ me.path }}">{{ me.name }}</a></h2>
+        <p class="teacher-bio">{{ me.short[site.lang] }}</p>
+        <p class="teacher-links">
+          <a href="{{ site.baseurl }}{{ me.path }}">{% t hero.teacher_profile %} &rarr;</a>
+          <a href="{{ site.baseurl }}/ai-mentorship/">{% t hero.teacher_mentorship %} &rarr;</a>
+        </p>
+      </div>
+    </aside>
   </div>
 </section>
 
-<section class="container">
+<section class="container lessons" aria-labelledby="lessons-title">
   <div class="section-heading">
-    <h2>{% t articles.latest %}</h2>
+    <div>
+      <h2 id="lessons-title">{% t home.lessons_title %}</h2>
+      <p class="section-intro">{% t home.lessons_intro %}</p>
+    </div>
     <a href="{{ site.baseurl }}/articles/" class="section-heading-link">{% t articles.view_all %} &rarr;</a>
   </div>
   <div class="articles-grid">
-    {% assign posts = site.posts | sort: "date" | reverse %}
-    {% for post in posts limit:3 %}
+    {% for post in lessons %}
       {% include article-card.html post=post %}
     {% endfor %}
+  </div>
+</section>
+
+<section class="why" aria-labelledby="why-title">
+  <div class="container">
+    <h2 id="why-title">{% t home.why_title %}</h2>
+    <dl class="stats">
+      <div class="stat">
+        <dt>30%</dt>
+        <dd>{% t home.stat_use %}</dd>
+      </div>
+      <div class="stat">
+        <dt>15%</dt>
+        <dd>{% t home.stat_trained %}</dd>
+      </div>
+      <div class="stat stat--accent">
+        <dt>0 &euro;</dt>
+        <dd>{% t home.stat_cost %}</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="container" aria-labelledby="mentor-band-title">
+  <div class="mentor-band">
+    <div class="mentor-band-text">
+      <span class="mentor-band-kicker">{% t home.mentor_kicker %}</span>
+      <h2 id="mentor-band-title">{% t home.mentor_title %}</h2>
+      <p>{% t home.mentor_text %}</p>
+    </div>
+    <a href="{{ site.baseurl }}/ai-mentorship/" class="btn btn--light">{% t home.mentor_cta %}</a>
   </div>
 </section>
 

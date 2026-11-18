@@ -1,0 +1,102 @@
+// Home page sections below the hero.
+
+// Three figures that explain why the school exists.
+.why {
+  margin-top: $space-xl;
+  padding: $space-xl 0;
+  background: $color-bg-card;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+
+  h2 {
+    margin: 0 0 $space-lg;
+    font-family: $font-body;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-text-light;
+  }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-lg $space-xl;
+
+  @media (max-width: $bp-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat {
+  border-left: 3px solid $color-primary;
+  padding-left: $space-md;
+
+  dt {
+    font-family: $font-heading;
+    font-size: clamp(2.6rem, 6vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1;
+    color: $color-text;
+  }
+
+  dd {
+    margin-top: $space-sm;
+    max-width: 18rem;
+    color: $color-text-light;
+  }
+}
+
+.stat--accent {
+  border-left-color: $color-accent;
+
+  dt {
+    color: $color-accent;
+  }
+}
+
+// A dark band that offers the next step: talking to someone.
+.mentor-band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-lg;
+  margin-top: $space-xl;
+  padding: $space-lg $space-xl;
+  border-radius: $radius;
+  color: rgba(#fff, 0.88);
+  background:
+    radial-gradient(40rem 20rem at 100% 0%, rgba($color-primary, 0.28), transparent 60%),
+    $color-accent-dark;
+
+  h2 {
+    margin: 0 0 $space-sm;
+    font-size: 1.6rem;
+    color: #fff;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  @media (max-width: $bp-mobile) {
+    padding: $space-lg;
+  }
+}
+
+.mentor-band-text {
+  flex: 1 1 24rem;
+  max-width: 40rem;
+}
+
+.mentor-band-kicker {
+  display: block;
+  margin-bottom: $space-sm;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-primary;
+}

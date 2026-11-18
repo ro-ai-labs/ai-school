@@ -1,6 +1,36 @@
+// A thin bar under the menu that fills as the article is read.
+.reading-progress {
+  position: fixed;
+  top: $nav-height;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  height: 3px;
+  pointer-events: none;
+}
+
+.reading-progress-bar {
+  display: block;
+  height: 100%;
+  background: $color-accent;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.article > .breadcrumbs {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding-left: $space-lg;
+  padding-right: $space-lg;
+
+  ol {
+    justify-content: center;
+  }
+}
+
 .article-header {
   text-align: center;
-  padding: $space-xl $space-lg $space-lg;
+  padding: $space-lg $space-lg $space-lg;
   max-width: $content-width;
   margin: 0 auto;
 }
@@ -14,6 +44,11 @@
   font-size: 0.85rem;
   color: $color-text-light;
   margin-bottom: $space-md;
+}
+
+.article-meta-author {
+  color: $color-text;
+  font-weight: 600;
 }
 
 .article-meta-separator {
@@ -72,6 +107,18 @@
 
   h2 {
     margin-top: $space-2xl;
+  }
+
+  h3 {
+    margin-top: $space-xl;
+  }
+
+  // Wide tables scroll sideways on a phone instead of breaking the page.
+  @media (max-width: $bp-mobile) {
+    table {
+      display: block;
+      overflow-x: auto;
+    }
   }
 
   blockquote {
@@ -152,4 +199,39 @@
   font-family: $font-heading;
   font-weight: 600;
   font-size: 1rem;
+}
+
+// "In this article": closed until asked for.
+.toc {
+  margin-bottom: $space-lg;
+  padding: $space-md $space-lg;
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+
+  summary {
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-text-light;
+  }
+
+  ol {
+    margin: $space-md 0 0 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  li {
+    margin-bottom: $space-xs;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

@@ -1,29 +1,40 @@
-<footer class="site-footer" role="contentinfo">
+{%- assign me = site.data.person -%}
+<footer class="site-footer">
   <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="footer-logo">AI School</span>
-      <p class="footer-tagline">{% t footer.tagline %}</p>
-    </div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo">AI School</span>
+        <p class="footer-tagline">{% t footer.tagline %}</p>
+        <p class="footer-author">{% t footer.written_by %} <a href="{{ site.baseurl }}{{ me.path }}">{{ me.name }}</a></p>
+      </div>
 
-    <div class="footer-links">
-      <a href="{{ site.baseurl }}/">{% t nav.home %}</a>
-      <a href="{{ site.baseurl }}/articles/">{% t nav.articles %}</a>
-      <a href="{{ site.baseurl }}/about/">{% t nav.about %}</a>
-    </div>
+      <div class="footer-col">
+        <span class="footer-col-title">{% t footer.school_title %}</span>
+        <ul class="footer-list">
+          <li><a href="{{ site.baseurl }}/">{% t nav.home %}</a></li>
+          <li><a href="{{ site.baseurl }}/articles/">{% t nav.articles %}</a></li>
+          <li><a href="{{ site.baseurl }}/ai-mentorship/">{% t nav.mentorship %}</a></li>
+          <li><a href="{{ site.baseurl }}{{ me.path }}">{% t nav.author %}</a></li>
+          <li><a href="{{ site.baseurl }}/about/">{% t nav.about %}</a></li>
+        </ul>
+      </div>
 
-    <div class="footer-projects">
-      <span class="footer-projects-title">{% t projects.footer_title %}</span>
-      <ul class="footer-projects-list">
-        {% for proj in site.data.projects %}
-        <li><a href="{% include project-url.html project=proj placement='footer' %}" target="_blank" rel="noopener">{{ proj.name }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
+      <div class="footer-col footer-projects">
+        <span class="footer-col-title">{% t projects.footer_title %}</span>
+        <ul class="footer-list">
+          {% for proj in site.data.projects %}
+          <li><a href="{% include project-url.html project=proj placement='footer' %}" target="_blank" rel="noopener">{{ proj.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
 
-    <div class="footer-social">
-      <a href="https://www.linkedin.com/in/mihaicvasnievschi/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        {% t footer.follow %}
-      </a>
+      <div class="footer-col">
+        <span class="footer-col-title">{% t footer.connect_title %}</span>
+        <ul class="footer-list">
+          <li><a href="{{ me.linkedin }}" target="_blank" rel="noopener me">{% t footer.follow %}</a></li>
+          <li><a href="{{ site.baseurl }}/feed.xml">{% t footer.feed %}</a></li>
+        </ul>
+      </div>
     </div>
 
     <div class="footer-bottom">

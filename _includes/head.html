@@ -1,7 +1,9 @@
 {%- comment -%}
-  Titles, descriptions and URLs are worked out once here and reused by the tags below.
+  Titles, descriptions and URLs are worked out once here and reused by the tags
+  below and by structured-data.html.
   English lives at the site root, Romanian under /ro. There is no /en path.
 {%- endcomment -%}
+{%- assign me = site.data.person -%}
 {%- capture site_title -%}{% t global.site_title %}{%- endcapture -%}
 {%- capture site_description -%}{% t global.site_description %}{%- endcapture -%}
 
@@ -12,6 +14,7 @@
 {%- if page_title == "" -%}
   {%- capture full_title -%}{% t global.home_title %}{%- endcapture -%}
   {%- assign share_title = full_title -%}
+  {%- assign page_title = full_title -%}
 {%- else -%}
   {%- capture full_title -%}{{ page_title }} | {{ site_title }}{%- endcapture -%}
   {%- assign share_title = page_title -%}
@@ -26,7 +29,9 @@
 {%- else -%}
   {%- assign page_description = site_description -%}
 {%- endif -%}
-{%- assign page_description = page_description | strip_html | normalize_whitespace | strip | escape_once -%}
+{%- comment -%} "plain" goes into JSON-LD, the escaped one into HTML attributes. {%- endcomment -%}
+{%- assign page_description_plain = page_description | strip_html | normalize_whitespace | strip -%}
+{%- assign page_description = page_description_plain | escape_once -%}
 
 {%- assign en_url = site.url | append: site.baseurl_root | append: page.url -%}
 {%- assign ro_url = site.url | append: site.baseurl_root | append: "/ro" | append: page.url -%}
@@ -43,13 +48,27 @@
 {%- else -%}
   {%- assign canonical_url = en_url -%}
 {%- endif -%}
-{%- assign share_image = site.url | append: site.baseurl_root | append: "/assets/img/og-image.png" -%}
+{%- assign share_image_path = page.share_image | default: "/assets/img/og-image.png" -%}
+{%- assign share_image = site.url | append: site.baseurl_root | append: share_image_path -%}
+{%- if page.share_image -%}
+  {%- capture share_image_alt -%}{% t global.author_image_alt %}{%- endcapture -%}
+{%- else -%}
+  {%- capture share_image_alt -%}{% t global.share_image_alt %}{%- endcapture -%}
+{%- endif -%}
+{%- if page.layout == "article" -%}
+  {%- assign og_type = "article" -%}
+{%- else -%}
+  {%- assign og_type = page.og_type | default: "website" -%}
+{%- endif -%}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ full_title | escape_once }}</title>
 <meta name="description" content="{{ page_description }}">
+<meta name="author" content="{{ me.name }}">
 {%- if page.noindex %}
 <meta name="robots" content="noindex">
+{%- else %}
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 {%- endif %}
 
 <!-- Canonical and language alternates -->
@@ -60,25 +79,39 @@
 {%- endif %}
 <link rel="alternate" hreflang="x-default" href="{{ en_url }}">
 
+<!-- Who wrote this -->
+<link rel="author" href="{{ site.baseurl }}{{ me.path }}">
+<link rel="me" href="{{ me.linkedin }}">
+
 <!-- Share previews -->
-<meta property="og:type" content="{% if page.layout == 'article' %}article{% else %}website{% endif %}">
+<meta property="og:type" content="{{ og_type }}">
 <meta property="og:site_name" content="{{ site_title | escape_once }}">
 <meta property="og:title" content="{{ share_title | escape_once }}">
 <meta property="og:description" content="{{ page_description }}">
 <meta property="og:url" content="{{ canonical_url }}">
 <meta property="og:locale" content="{% if site.lang == 'ro' %}ro_RO{% else %}en_US{% endif %}">
+{%- if has_ro_version %}
+<meta property="og:locale:alternate" content="{% if site.lang == 'ro' %}en_US{% else %}ro_RO{% endif %}">
+{%- endif %}
 <meta property="og:image" content="{{ share_image }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="{% t global.share_image_alt %}">
+<meta property="og:image:alt" content="{{ share_image_alt | escape_once }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ share_title | escape_once }}">
 <meta name="twitter:description" content="{{ page_description }}">
 <meta name="twitter:image" content="{{ share_image }}">
-{%- if page.layout == "article" %}
-<meta name="author" content="{{ page.author | escape_once }}">
-<meta property="article:author" content="{{ page.author | escape_once }}">
+<meta name="twitter:image:alt" content="{{ share_image_alt | escape_once }}">
+{%- if og_type == "article" %}
+<meta property="article:author" content="{{ site.url }}{{ site.baseurl }}{{ me.path }}">
 <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+<meta property="article:modified_time" content="{{ page.last_modified_at | default: page.date | date_to_xmlschema }}">
+{%- if page.series %}
+<meta property="article:section" content="{{ page.series | escape_once }}">
+{%- endif %}
+{%- elsif og_type == "profile" %}
+<meta property="profile:first_name" content="{{ me.given_name }}">
+<meta property="profile:last_name" content="{{ me.family_name }}">
 {%- endif %}
 
 <!-- Icons -->
@@ -90,10 +123,11 @@
 <!-- Feed -->
 <link rel="alternate" type="application/atom+xml" title="{{ site_title | escape_once }}" href="{{ site.baseurl }}/feed.xml">
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<!-- Fonts are served from this site. The two files every page needs load early. -->
+<link rel="preload" href="{{ site.baseurl_root }}/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ site.baseurl_root }}/assets/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <!-- CSS -->
 <link rel="stylesheet" href="{{ site.baseurl_root }}/assets/css/main.css">
+
+{% include structured-data.html %}

@@ -6,9 +6,12 @@
   {%- assign card_link_attrs = ' data-lang-link="en" hreflang="en"' -%}
 {%- endif -%}
 <article class="article-card">
+  {% if include.post.series_order %}
+  <span class="article-card-number" aria-hidden="true">{{ include.post.series_order | prepend: "0" | slice: -2, 2 }}</span>
+  {% endif %}
   <div class="article-card-labels">
     {% if include.post.series %}
-    <span class="article-card-series">{{ include.post.series }}</span>
+    <span class="article-card-series">{{ include.post.series }}{% if include.post.series_order %} &middot; {% t articles.lesson %} {{ include.post.series_order }}{% endif %}</span>
     {% endif %}
     {% if card_in_english %}
     <span class="article-card-lang">{% t articles.in_english %}</span>
