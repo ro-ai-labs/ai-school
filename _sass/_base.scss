@@ -236,6 +236,10 @@ table {
   }
 }
 
+.breadcrumbs + .page-header {
+  padding-top: $space-lg;
+}
+
 .page-lead {
   font-size: 1.1rem;
   color: $color-text-light;

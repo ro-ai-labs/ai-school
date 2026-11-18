@@ -1,17 +1,18 @@
 {%- comment -%}
   "In this article": a list of the article's section headings, built from the
-  rendered text. Sections are the "###" headings, which become <h3 id="...">.
-  Shown only when there are at least three.
+  rendered text. Sections are the second-level headings, <h2 id="...">
+  (article.html promotes "###" to that level). Shown only when there are at
+  least three.
   Usage: {% include toc.html html=content %}
 {%- endcomment -%}
-{%- assign toc_parts = include.html | split: '<h3 id="' -%}
+{%- assign toc_parts = include.html | split: '<h2 id="' -%}
 {%- if toc_parts.size > 3 %}
 <details class="toc">
   <summary>{% t articles.toc %}</summary>
   <ol>
     {%- for toc_part in toc_parts offset: 1 %}
     {%- assign toc_id = toc_part | split: '"' | first -%}
-    {%- assign toc_label = toc_part | split: "</h3>" | first | remove_first: toc_id | remove_first: '">' | strip_html | strip %}
+    {%- assign toc_label = toc_part | split: "</h2>" | first | remove_first: toc_id | remove_first: '">' | strip_html | strip %}
     <li><a href="#{{ toc_id }}">{{ toc_label }}</a></li>
     {%- endfor %}
   </ol>

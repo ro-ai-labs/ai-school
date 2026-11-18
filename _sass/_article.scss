@@ -112,12 +112,10 @@
   margin: 0 auto;
   padding: 0 $space-lg $space-2xl;
 
+  // Section headings. Sized between the page's h2 and h3: an article has many.
   h2 {
-    margin-top: $space-2xl;
-  }
-
-  h3 {
     margin-top: $space-xl;
+    font-size: 1.5rem;
   }
 
   // Wide tables scroll sideways on a phone instead of breaking the page.

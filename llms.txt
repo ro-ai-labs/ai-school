@@ -18,7 +18,7 @@ AI School ({{ origin }}/) is written by {{ me.name }}. Everything on it is free 
 ## {% t author.title %}
 
 - [{{ me.name }}]({{ origin }}{{ me.path }}): {{ me.description[site.lang] }}
-- {{ me.job_title[site.lang] }}. {{ me.location[site.lang] }}. {{ me.language_names[site.lang] }}.
+- {{ me.job_title[site.lang] }}. {{ me.location[site.lang] }}. {% if site.lang == "ro" %}Limbi{% else %}Languages{% endif %}: {{ me.language_names[site.lang] }}.
 {%- for line in me.experience %}
 - {{ line[site.lang] }}
 {%- endfor %}
@@ -32,9 +32,9 @@ AI School ({{ origin }}/) is written by {{ me.name }}. Everything on it is free 
 
 ## {% t articles.title %}
 {% for post in lessons -%}
-{%- unless site.data.untranslated[site.lang] contains post.slug %}
-- [{{ post.title }}]({{ origin }}{{ post.url }}): {{ post.excerpt_text | default: post.title }}
-{%- endunless -%}
+{%- comment -%} An article with no text in this language yet is listed with its English address. {%- endcomment -%}
+{%- capture post_link -%}{{ site.url }}{% include post-href.html post=post %}{%- endcapture %}
+- [{{ post.title }}]({{ post_link }}){% if site.data.untranslated[site.lang] contains post.slug %} ({% if site.lang == "ro" %}în engleză{% else %}in English{% endif %}){% endif %}: {{ post.excerpt_text | default: post.title }}
 {%- endfor %}
 - [{% t articles.all_articles %}]({{ origin }}/articles/)
 

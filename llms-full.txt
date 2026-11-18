@@ -2,15 +2,28 @@
 layout: null
 permalink: /llms-full.txt
 ---
-# AI School: full text
+# AI School: {% if site.lang == "ro" %}textul complet{% else %}full text{% endif %}
 {% assign me = site.data.person -%}
 {%- assign origin = site.url | append: site.baseurl -%}
-{%- assign lessons = site.posts | sort: "series_order" %}
-Author: {{ me.name }} ({{ origin }}{{ me.path }})
+{%- assign lessons = site.posts | sort: "series_order" -%}
+{%- assign not_translated = site.data.untranslated[site.lang] | size %}
+{% if site.lang == "ro" %}Autor{% else %}Author{% endif %}: {{ me.name }} ({{ origin }}{{ me.path }})
 
 {{ me.description[site.lang] }}
 
+{% if site.lang == "ro" -%}
+Tot ce urmează poate fi citit, citat și distribuit gratuit. Sursa: {{ origin }}/
+{%- else -%}
 Every article below is free to read, quote and share. Source: {{ origin }}/
+{%- endif %}
+{%- if not_translated > 0 %}
+
+{% if site.lang == "ro" -%}
+Articolele care nu sunt încă traduse se găsesc în engleză, cu textul complet, la {{ site.url }}{{ site.baseurl_root }}/llms-full.txt
+{%- else -%}
+Articles that are not translated yet are in English, in full, at {{ site.url }}{{ site.baseurl_root }}/llms-full.txt
+{%- endif %}
+{%- endif %}
 {% for post in lessons -%}
 {%- unless site.data.untranslated[site.lang] contains post.slug %}
 
@@ -19,10 +32,10 @@ Every article below is free to read, quote and share. Source: {{ origin }}/
 ## {{ post.title }}
 
 URL: {{ origin }}{{ post.url }}
-Published: {{ post.date | date: "%Y-%m-%d" }}
-Author: {{ post.author }}
-{% if post.series %}Series: {{ post.series }}, part {{ post.series_order }}
+{% if site.lang == "ro" %}Publicat{% else %}Published{% endif %}: {{ post.date | date: "%Y-%m-%d" }}
+{% if site.lang == "ro" %}Autor{% else %}Author{% endif %}: {{ post.author }}
+{% if post.series %}{% if site.lang == "ro" %}Seria{% else %}Series{% endif %}: {{ post.series }}, {% if site.lang == "ro" %}partea{% else %}part{% endif %} {{ post.series_order }}
 {% endif %}
-{{ post.content | strip_html | replace: "&amp;", "&" | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&quot;", '"' | replace: "&#39;", "'" }}
+{{ post.content | replace: "<h2", "## <h2" | replace: "<h3", "### <h3" | replace: "<h4", "#### <h4" | strip_html | replace: "&amp;", "&" | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&quot;", '"' | replace: "&#39;", "'" }}
 {%- endunless -%}
 {%- endfor %}

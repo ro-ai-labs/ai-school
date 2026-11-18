@@ -10,7 +10,7 @@ import argparse
 import json
 import re
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
@@ -55,6 +55,9 @@ REQUIRED_FILES = (
     "ro/ai-mentorship/index.html",
 )
 ARTICLE_RE = re.compile(r"^/articles/[^/]+/$")
+# JSON-LD ids that mean the same thing on every page. Any other id on this site
+# belongs to one page and must start with that page's own URL.
+SITE_WIDE_IDS = (ORIGIN + "/#website", ORIGIN + "/#school", ORIGIN + AUTHOR_PATH + "#person")
 
 
 class Page(HTMLParser):
@@ -76,6 +79,11 @@ class Page(HTMLParser):
         self.text = []  # visible text
         self.in_jsonld = False
         self.hidden = None  # "script" or "style" while inside one
+        self.headings = []  # heading levels, in page order
+        self.crumbs = []  # text of each step of the visible breadcrumb
+        self.in_crumbs = False
+        self.in_crumb = False
+        self.faq_items = 0
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -85,6 +93,16 @@ class Page(HTMLParser):
             self.in_title = True
         if "data-untranslated" in a:
             self.untranslated = True
+        classes = (a.get("class") or "").split()
+        if re.fullmatch(r"h[1-6]", tag):
+            self.headings.append(int(tag[1]))
+        if tag == "nav" and "breadcrumbs" in classes:
+            self.in_crumbs = True
+        elif tag == "li" and self.in_crumbs:
+            self.crumbs.append("")
+            self.in_crumb = True
+        if "faq-item" in classes:
+            self.faq_items += 1
         if tag == "h1":
             self.h1 += 1
         elif tag == "img":
@@ -116,10 +134,17 @@ class Page(HTMLParser):
         if tag == self.hidden:
             self.hidden = None
             self.in_jsonld = False
+        if tag == "li":
+            self.in_crumb = False
+        elif tag == "nav":
+            self.in_crumbs = False
+            self.in_crumb = False
 
     def handle_data(self, data):
         if self.in_title:
             self.title += data
+        if self.in_crumb:
+            self.crumbs[-1] += data
         if self.in_jsonld:
             self.jsonld[-1] += data
         elif self.hidden is None and not self.in_head:
@@ -155,6 +180,7 @@ class Checker:
         # Filled while reading pages, compared across languages afterwards.
         self.ro_alternate_on_en = {}  # inner path -> hreflang "ro" URL declared by the English page
         self.ro_pages = {}  # inner path -> True when the Romanian page is a "not translated" placeholder
+        self.id_urls = defaultdict(set)  # JSON-LD @id -> every "url" given for it, on any page
 
     @staticmethod
     def count_projects(projects_file):
@@ -218,6 +244,14 @@ class Checker:
         # Page structure
         if page.h1 != 1:
             self.fail("headings", where, f"expected exactly one <h1>, found {page.h1}")
+        if page.headings and page.headings[0] != 1:
+            self.fail("headings", where, f"the first heading is <h{page.headings[0]}>, not <h1>")
+        for above, below in zip(page.headings, page.headings[1:]):
+            if below > above + 1:
+                self.fail("headings", where, f"heading levels skip from <h{above}> to <h{below}>")
+                break
+        if page.untranslated and page.meta.get("og:locale") == "ro_RO":
+            self.fail("meta", where, "og:locale is ro_RO on a page whose share link is the English article")
         for image in page.images:
             if "alt" not in image:
                 self.fail("images", where, f"image without alt text: {image.get('src')}")
@@ -391,7 +425,8 @@ class Checker:
             self.fail("structured_data", where, f"expected one Person node for {AUTHOR}, found {len(people)}")
             return
         person = people[0]
-        want_url = ORIGIN + lang_path(lang, AUTHOR_PATH)
+        # One person, one address: the same on English and Romanian pages.
+        want_url = ORIGIN + AUTHOR_PATH
         if person.get("url") != want_url:
             self.fail("structured_data", where, f"Person url should be {want_url}, found {person.get('url')}")
         if LINKEDIN not in (person.get("sameAs") or []):
@@ -401,11 +436,21 @@ class Checker:
                 self.fail("structured_data", where, f"Person has no {key}")
         if not of_type("WebSite"):
             self.fail("structured_data", where, "no WebSite node")
-        if page.untranslated:
-            return
 
         own_url = ORIGIN + where
-        if ARTICLE_RE.match(inner):
+        for node in nodes:
+            node_id = node.get("@id")
+            if not isinstance(node_id, str):
+                continue
+            if isinstance(node.get("url"), str):
+                self.id_urls[node_id].add(node["url"])
+            if node_id.startswith(ORIGIN) and node_id not in SITE_WIDE_IDS and not node_id.startswith(own_url + "#"):
+                self.fail("structured_data", where, f"JSON-LD id belongs to another page: {node_id}")
+
+        if page.untranslated:
+            if of_type("Article"):
+                self.fail("structured_data", where, "an untranslated placeholder is marked up as an Article")
+        elif ARTICLE_RE.match(inner):
             articles = of_type("Article")
             if len(articles) != 1:
                 self.fail("structured_data", where, f"expected one Article node, found {len(articles)}")
@@ -420,13 +465,20 @@ class Checker:
                     self.fail("structured_data", where, "Article author is not the Person node")
                 if article.get("mainEntityOfPage") != own_url:
                     self.fail("structured_data", where, f"Article mainEntityOfPage should be {own_url}")
+        crumbs = of_type("BreadcrumbList")
+        items = (crumbs[0].get("itemListElement") or []) if crumbs else []
         if inner != "/" and where not in ("/404.html", "/ro/404.html"):
-            crumbs = of_type("BreadcrumbList")
-            items = (crumbs[0].get("itemListElement") or []) if crumbs else []
             if len(items) < 2:
                 self.fail("structured_data", where, "no BreadcrumbList with at least two steps")
             elif items[-1].get("item") != own_url:
                 self.fail("structured_data", where, f"last breadcrumb should be {own_url}, found {items[-1].get('item')}")
+        # What search engines are told must be what the reader sees.
+        told = [" ".join(str(item.get("name", "")).split()) for item in items]
+        shown = [" ".join(text.split()) for text in page.crumbs]
+        if told != shown:
+            self.fail("structured_data", where, f"breadcrumb in JSON-LD {told} differs from the one on the page {shown}")
+        if page.untranslated:
+            return
         if inner == AUTHOR_PATH:
             profiles = of_type("ProfilePage")
             if not profiles or (profiles[0].get("mainEntity") or {}).get("@id") != person["@id"]:
@@ -437,6 +489,12 @@ class Checker:
             questions = (faqs[0].get("mainEntity") or []) if faqs else []
             if len(questions) < 3:
                 self.fail("structured_data", where, f"FAQPage needs at least 3 questions, found {len(questions)}")
+            if page.faq_items != len(questions):
+                self.fail(
+                    "structured_data",
+                    where,
+                    f"{page.faq_items} question(s) on the page but {len(questions)} in the JSON-LD",
+                )
             for question in questions:
                 name = " ".join(str(question.get("name", "")).split())
                 answer = " ".join(str((question.get("acceptedAnswer") or {}).get("text", "")).split())
@@ -463,6 +521,12 @@ class Checker:
             elif declared != ro_url:
                 self.fail("hreflang", where, f"hreflang ro should be {ro_url}, found {declared}")
 
+    def check_shared_ids(self):
+        """A thing named by one JSON-LD id has one address, whichever page or language mentions it."""
+        for node_id, urls in sorted(self.id_urls.items()):
+            if len(urls) > 1:
+                self.fail("structured_data", node_id, "has more than one url across pages: " + ", ".join(sorted(urls)))
+
     def check_files(self):
         for rel in REQUIRED_FILES:
             if not (self.site / rel).is_file():
@@ -475,15 +539,27 @@ class Checker:
                     self.fail("files", "/robots.txt", f"does not list {ORIGIN}{sitemap}")
             if re.search(r"(?im)^disallow:\s*/\s*$", text):
                 self.fail("files", "/robots.txt", "blocks a crawler from the whole site")
-        llms = self.site / "llms.txt"
-        if llms.is_file():
+        for rel in ("llms.txt", "ro/llms.txt"):
+            llms = self.site / rel
+            if not llms.is_file():
+                self.fail("files", "/" + rel, "missing")
+                continue
             text = llms.read_text(encoding="utf-8", errors="replace")
             if not text.startswith("# ") or AUTHOR not in text or "{{" in text or "<" in text:
-                self.fail("files", "/llms.txt", "should be plain Markdown that starts with a title and names the author")
+                self.fail("files", "/" + rel, "should be plain Markdown that starts with a title and names the author")
             for link in re.findall(r"\]\((https://[^)\s]+)\)", text):
                 own = self.own_path(link)
                 if own is not None and not self.exists(own):
-                    self.fail("files", "/llms.txt", f"links to a page that does not exist: {link}")
+                    self.fail("files", "/" + rel, f"links to a page that does not exist: {link}")
+            if len(re.findall(r"\]\(" + re.escape(ORIGIN) + r"(?:/ro)?/articles/[^/)]+/\)", text)) < 1:
+                self.fail("files", "/" + rel, "does not link to any article")
+        full = self.site / "llms-full.txt"
+        if full.is_file():
+            text = full.read_text(encoding="utf-8", errors="replace")
+            if AUTHOR not in text or re.search(r"</?[a-zA-Z][a-zA-Z0-9]*[\s>]", text) or "{{" in text:
+                self.fail("files", "/llms-full.txt", "should be plain text that names the author")
+            if not re.search(r"(?m)^### \S", text):
+                self.fail("files", "/llms-full.txt", "article section headings were lost")
         for rel in ("sitemap.xml", "ro/sitemap.xml"):
             sitemap = self.site / rel
             if not sitemap.is_file():
@@ -507,6 +583,7 @@ class Checker:
         for file in pages:
             self.check_page(file)
         self.check_language_pairs()
+        self.check_shared_ids()
         self.check_files()
         return len(pages)
 

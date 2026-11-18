@@ -6,7 +6,9 @@
 # per site language (en, ro). Facts checked against each live site on 2026-11-13.
 # "help" is the line shown on the mentorship page. "schema_type", "schema_id" and
 # "relation" describe the project to search engines (founder of an organisation,
-# author of a book); schema_id matches the id each project uses on its own site.
+# author of a book). schema_id is the id the project uses for itself in its own
+# structured data, so both sites point at the same thing. Let's Talk AI does not
+# declare one yet: the id below is the one to add on lets-talk-ai.ro.
 
 - id: lets-talk-ai
   schema_type: "Organization"
@@ -41,7 +43,7 @@
   relation: "founder"
   help:
     en: "For a team. AI strategy and hands-on workshops for companies in Romania, starting with a free call."
-    ro: "Pentru o echipă. Strategie AI și workshop-uri practice pentru companii din România, pornind de la un call gratuit."
+    ro: "Pentru o echipă. Strategie AI și workshopuri practice pentru companii din România, pornind de la un call gratuit."
   name: "AI Labs"
   url:
     en: "https://ai-labs.ro/"
@@ -54,7 +56,7 @@
     ro: "Adu AI în echipa ta"
   blurb:
     en: "AI strategy and hands-on workshops for companies in Romania. The workshops also count toward the AI literacy the EU AI Act expects from companies that use AI. The first call is free."
-    ro: "Strategie AI și workshopuri practice pentru companii din România. Workshopurile sunt și una dintre măsurile de AI literacy pe care EU AI Act le cere companiilor care folosesc AI. Prima discuție este gratuită."
+    ro: "Strategie AI și workshopuri practice pentru companii din România. Workshopurile contează și pentru alfabetizarea AI pe care AI Act o așteaptă de la companiile care folosesc AI. Primul call este gratuit."
   tagline:
     en: "AI strategy and workshops for companies"
     ro: "strategie AI și workshopuri pentru companii"
@@ -67,24 +69,24 @@
   schema_id: "https://ai-leaders.ro/#org"
   relation: "founder"
   help:
-    en: "For a company decision. A team of senior AI experts in Romania who have taken AI to production."
-    ro: "Pentru o decizie de companie. O echipă de experți AI seniori din România, care au dus AI în producție."
+    en: "For a company decision. A team of senior AI practitioners in Romania who have taken AI to production."
+    ro: "Pentru o decizie de companie. O echipă de practicieni AI seniori din România, care au dus AI în producție."
   name: "AI Leaders Romania"
   url:
     en: "https://ai-leaders.ro/en/"
     ro: "https://ai-leaders.ro/"
   role:
-    en: "Founder"
-    ro: "Fondator"
+    en: "Co-founder"
+    ro: "Cofondator"
   need:
     en: "Facing an AI decision"
     ro: "Ai de luat o decizie AI"
   blurb:
-    en: "A network of practitioners in Romania who have taken AI to production. Talk to someone who has already made the decision in front of you."
-    ro: "O rețea de practicieni din România care au dus AI în producție. Vorbește cu cineva care a luat deja decizia prin care treci tu acum."
+    en: "A collective of AI practitioners in Romania who have taken AI to production. Talk to someone who has already made the decision in front of you."
+    ro: "Un colectiv de practicieni AI din România care au dus AI în producție. Vorbește cu cineva care a luat deja decizia prin care treci tu acum."
   tagline:
-    en: "a network of AI practitioners in Romania"
-    ro: "o rețea de practicieni AI din România"
+    en: "a collective of AI practitioners in Romania"
+    ro: "un colectiv de practicieni AI din România"
   cta:
     en: "Meet the experts"
     ro: "Vezi experții"
@@ -108,10 +110,10 @@
     ro: "Construiești software cu AI"
   blurb:
     en: "A free field manual for shipping software with AI coding agents. Vendor neutral, written for engineers and the people who manage them."
-    ro: "Un manual gratuit despre cum livrezi software cu agenți AI de programare. Independent de furnizori, scris pentru ingineri și pentru cei care îi conduc."
+    ro: "Un manual gratuit despre cum livrezi software cu agenți AI pentru programare. Independent de furnizori, scris pentru ingineri și pentru cei care îi conduc."
   tagline:
     en: "a free field manual for AI coding agents"
-    ro: "un manual gratuit despre agenții AI de programare"
+    ro: "un manual gratuit despre agenții AI pentru programare"
   cta:
     en: "Read the manual"
     ro: "Citește manualul"

@@ -1,3 +1,10 @@
+{%- comment -%}
+  One article in a list.
+  Usage: {% include article-card.html post=post %}
+  Pass level=2 where the card sits directly under the page title, so heading
+  levels are not skipped; the default is 3.
+{%- endcomment -%}
+{%- assign card_level = include.level | default: 3 -%}
 {%- capture card_href -%}{% include post-href.html post=include.post %}{%- endcapture -%}
 {%- assign card_in_english = false -%}
 {%- assign card_link_attrs = "" -%}
@@ -17,9 +24,9 @@
     <span class="article-card-lang">{% t articles.in_english %}</span>
     {% endif %}
   </div>
-  <h3 class="article-card-title">
+  <h{{ card_level }} class="article-card-title">
     <a href="{{ card_href }}"{{ card_link_attrs }}>{{ include.post.title }}</a>
-  </h3>
+  </h{{ card_level }}>
   <p class="article-card-excerpt">
     {%- if include.post.excerpt_text -%}
       {{ include.post.excerpt_text }}

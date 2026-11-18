@@ -89,7 +89,7 @@
 <meta property="og:title" content="{{ share_title | escape_once }}">
 <meta property="og:description" content="{{ page_description }}">
 <meta property="og:url" content="{{ canonical_url }}">
-<meta property="og:locale" content="{% if site.lang == 'ro' %}ro_RO{% else %}en_US{% endif %}">
+<meta property="og:locale" content="{% if site.lang == 'ro' and has_ro_version %}ro_RO{% else %}en_US{% endif %}">
 {%- if has_ro_version %}
 <meta property="og:locale:alternate" content="{% if site.lang == 'ro' %}en_US{% else %}ro_RO{% endif %}">
 {%- endif %}

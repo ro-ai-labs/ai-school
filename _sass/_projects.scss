@@ -23,9 +23,14 @@
   }
 }
 
-// Five cards read better three across.
+// Five cards, three across. The first is twice as wide, so no row is left
+// with a gap at any width.
 .projects-grid--three {
   grid-template-columns: repeat(3, 1fr);
+
+  .project-card:first-child {
+    grid-column: span 2;
+  }
 
   @media (max-width: $bp-desktop) {
     grid-template-columns: repeat(2, 1fr);
@@ -33,6 +38,10 @@
 
   @media (max-width: $bp-mobile) {
     grid-template-columns: 1fr;
+
+    .project-card:first-child {
+      grid-column: auto;
+    }
   }
 }
 

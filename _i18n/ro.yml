@@ -38,7 +38,7 @@ home:
   stat_cost: "costă AI School. Fără paywall, fără cont."
   mentor_kicker: "Mentorat AI"
   mentor_title: "Vrei să discuți cu cineva?"
-  mentor_text: "Mihai este mentor pentru fondatori, CTO și manageri care răspund de adoptarea AI, unu la unu, în română sau în engleză. Totul începe cu un call gratuit de 30 de minute."
+  mentor_text: "Mihai lucrează unu la unu, în română sau în engleză, cu fondatori, CTO și manageri care răspund de adoptarea AI. Totul începe cu un call gratuit de 30 de minute."
   mentor_cta: "Cum funcționează mentoratul AI"
 
 articles:
@@ -65,10 +65,10 @@ articles:
 
 projects:
   title: "Mergi mai departe"
-  intro: "AI School este gratuit și rămâne gratuit. Este scris de Mihai Cvasnievschi, care se ocupă și de proiectele de mai jos. Dacă articolele ți-au fost de folos, aici continuă conversația."
+  intro: "AI School este gratuită și rămâne gratuită. Este scrisă de Mihai Cvasnievschi, care se ocupă și de proiectele de mai jos. Dacă articolele ți-au fost de folos, aici continuă conversația."
   about_title: "Alte proiecte ale lui Mihai"
   about_intro: "AI School este unul dintre mai multe proiecte construite în jurul aceleiași idei: oamenii și companiile să folosească bine AI."
-  footer_title: "Alte proiecte de Mihai Cvasnievschi"
+  footer_title: "Alte proiecte ale lui Mihai Cvasnievschi"
 
 author:
   title: "Despre autor"
@@ -80,10 +80,10 @@ author:
 
 profile:
   title: "Mihai Cvasnievschi: arhitect AI, mentor și autor"
-  description: "Mihai Cvasnievschi este arhitect AI/ML, consultant în strategie AI și mentor, în București. Peste 25 de ani în software, în AI din 2013. Autorul AI School."
+  description: "Mihai Cvasnievschi este arhitect AI/ML, consultant în strategie AI și mentor din București. Peste 25 de ani în software, în AI din 2013. Autorul AI School."
   eyebrow: "Autorul AI School"
   glance_title: "Pe scurt"
-  topics_title: "Ce predă și pe ce teme este mentor"
+  topics_title: "Ce predă și pe ce teme oferă mentorat"
   experience_title: "Experiență"
   talks_title: "Prezentări"
   projects_title: "De ce se ocupă"
@@ -108,7 +108,7 @@ mentorship:
   who_title: "Cu cine vei vorbi"
   who_cta: "Profilul complet"
   ways_title: "Alte căi de a primi ajutor"
-  ways_intro: "Unu la unu nu este singura cale și de multe ori nu este prima. Două dintre acestea sunt gratuite."
+  ways_intro: "Unu la unu nu este singura cale și de multe ori nu este prima. Trei dintre ele sunt gratuite."
   ways_school_kicker: "Gratuit, în ritmul tău"
   ways_school_title: "AI School"
   ways_school_text: "Începe cu articolele de pe acest site. Acoperă ce trebuie să știe orice om la locul de muncă pentru a folosi bine AI."
@@ -124,7 +124,7 @@ about:
   bio_more: "Lucrează cu edge AI, platforme LLM enterprise, RAG și MLOps, mereu cu același test: rezistă în producție, nu doar în demo?"
   author_link: "Mai multe despre Mihai"
   mission_title: "Misiunea"
-  mission_gap: "30% dintre angajații europeni folosesc AI zilnic. Doar 15% au primit vreo formă de training. EU AI Act cere acum AI literacy de la organizațiile care folosesc sisteme AI, iar aplicarea începe în 2026."
+  mission_gap: "30% dintre angajații europeni folosesc AI zilnic. Doar 15% au primit vreo formă de training. AI Act cere acum alfabetizare AI de la organizațiile care folosesc sisteme AI, iar aplicarea începe în 2026."
   mission_free: "AI School există ca să închidă acest decalaj. Totul aici este gratuit: articolele, framework-ul, metodologia. Fără paywall, fără abonamente, fără cont. Valoarea vorbește de la sine."
   framework_title: "SPARKS-SIX"
   framework_text: "Articolele noastre se bazează pe framework-ul SPARKS-SIX: o metodologie cu șase piloni pentru a lucra eficient și responsabil cu orice instrument AI. Framework-ul este publicat treptat, prin seria noastră de articole."
@@ -143,5 +143,5 @@ footer:
   follow: "Mihai pe LinkedIn"
   feed: "Feed"
   copyright: "AI School. Tot conținutul poate fi folosit și distribuit liber."
-  written_by: "Scris de"
+  written_by: "Scrisă de"
   built_with: "Făcut cu grijă în București."

@@ -37,7 +37,7 @@ elsewhere:
       ro: "https://ai-labs.ro/ro/mihai-cvasnievschi/"
   - label:
       en: "Author page of Ship It With AI"
-      ro: "Pagina de autor Ship It With AI"
+      ro: "Pagina de autor de pe Ship It With AI"
     url:
       en: "https://ship-it-with.ai/about-the-author/"
       ro: "https://ship-it-with.ai/ro/about-the-author/"
@@ -59,16 +59,16 @@ job_title:
 
 tagline:
   en: "AI/ML architect, mentor and author in Bucharest"
-  ro: "Arhitect AI/ML, mentor și autor, în București"
+  ro: "Arhitect AI/ML, mentor și autor din București"
 
 # The paragraph a search engine or an AI assistant is most likely to quote.
 description:
-  en: "Mihai Cvasnievschi is an AI/ML architect, AI strategy consultant and mentor based in Bucharest, Romania. He has 25+ years in software and has worked in AI since 2013. He writes AI School, a free AI literacy school for everybody, and mentors founders, CTOs and managers who own AI adoption. He is the founder of AI Labs, AI Leaders Romania and the Let's Talk AI community, and the author of Ship It With AI, a free manual on AI coding agents."
-  ro: "Mihai Cvasnievschi este arhitect AI/ML, consultant în strategie AI și mentor, în București. Are peste 25 de ani în software și lucrează în AI din 2013. Scrie AI School, o școală gratuită de AI literacy pentru toată lumea, și este mentor pentru fondatori, CTO și manageri care răspund de adoptarea AI. Este fondatorul AI Labs, AI Leaders Romania și al comunității Let's Talk AI și autorul manualului gratuit Ship It With AI, despre agenții AI pentru programare."
+  en: "Mihai Cvasnievschi is an AI/ML architect, AI strategy consultant and mentor based in Bucharest, Romania. He has 25+ years in software and has worked in AI since 2013. He writes AI School, a free AI literacy school for everybody, and mentors founders, CTOs and managers who own AI adoption. He is the founder of AI Labs and the Let's Talk AI community, co-founder of AI Leaders Romania, and the author of Ship It With AI, a free manual on AI coding agents."
+  ro: "Mihai Cvasnievschi este arhitect AI/ML, consultant în strategie AI și mentor din București, România. Are peste 25 de ani în software și lucrează în AI din 2013. Scrie AI School, o școală gratuită de AI literacy pentru toată lumea, și este mentor pentru fondatori, CTO și manageri care răspund de adoptarea AI. Este fondatorul AI Labs și al comunității Let's Talk AI, cofondator al AI Leaders Romania și autorul manualului gratuit Ship It With AI, despre agenții AI pentru programare."
 
 short:
-  en: "AI/ML architect and mentor in Bucharest, with 25+ years in software and in AI since 2013. Founder of AI Labs, AI Leaders Romania and Let's Talk AI."
-  ro: "Arhitect AI/ML și mentor în București, cu peste 25 de ani în software și în AI din 2013. Fondator AI Labs, AI Leaders Romania și Let's Talk AI."
+  en: "AI/ML architect and mentor in Bucharest, with 25+ years in software and in AI since 2013. Founder of AI Labs and Let's Talk AI, co-founder of AI Leaders Romania."
+  ro: "Arhitect AI/ML și mentor în București, cu peste 25 de ani în software și în AI din 2013. Fondator AI Labs și Let's Talk AI, cofondator AI Leaders Romania."
 
 knows_about:
   - "Artificial intelligence"
@@ -123,8 +123,8 @@ glance:
       en: "Community"
       ro: "Comunitate"
     value:
-      en: "Founder of Let's Talk AI, the free monthly AI mixer in Bucharest, and of AI Leaders Romania."
-      ro: "Fondatorul Let's Talk AI, mixerul lunar gratuit despre AI din București, și al AI Leaders Romania."
+      en: "Founder of Let's Talk AI, the free monthly AI mixer in Bucharest, and co-founder of AI Leaders Romania."
+      ro: "Fondatorul Let's Talk AI, mixerul lunar gratuit despre AI din București, și cofondator al AI Leaders Romania."
 
 topics:
   - title:
@@ -144,7 +144,7 @@ topics:
       ro: "Sisteme cu LLM, RAG și agenți"
     text:
       en: "How to design them, who should build them and how to keep delivery on track."
-      ro: "Cum le proiectezi, cine le construiește și cum ții livrarea pe drumul bun."
+      ro: "Cum le proiectezi, cine ar trebui să le construiască și cum ții livrarea pe drumul bun."
   - title:
       en: "AI coding agents"
       ro: "Agenți AI pentru programare"
@@ -174,7 +174,7 @@ experience:
   - en: "Designed a self-hosted AI platform, with RAG and agents, for a national telecom operator."
     ro: "A proiectat o platformă AI self-hosted, cu RAG și agenți, pentru un operator național de telecom."
   - en: "Worked on speech-to-text and language understanding for medical reports in Romanian."
-    ro: "A lucrat la speech-to-text și înțelegerea limbajului pentru rapoarte medicale în română."
+    ro: "A lucrat la speech-to-text și la înțelegerea limbajului natural pentru rapoarte medicale în română."
   - en: "Presented an AI demo on neuromorphic chips at CES 2024 and Embedded World 2024."
     ro: "A prezentat un demo de AI pe cipuri neuromorfice la CES 2024 și Embedded World 2024."
   - en: "Has delivered for telecom, banking and finance, retail, logistics, insurance, healthcare, manufacturing, energy and semiconductors."
@@ -199,7 +199,7 @@ talks:
       ro: "Politehnica București, Facultatea de Automatică și Calculatoare"
     title_plain:
       en: "A talk on adapting your skills to the trends ahead"
-      ro: "O prezentare despre cum îți adaptezi abilitățile la trendurile care vin"
+      ro: "O prezentare despre cum îți adaptezi abilitățile la ce urmează în tehnologie"
   - date: 2024-02-05
     where:
       en: "RO AI Alliance Bucharest"

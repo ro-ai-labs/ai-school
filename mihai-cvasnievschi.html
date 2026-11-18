@@ -32,6 +32,27 @@ og_type: profile
     </header>
 
     <div class="profile-body">
+      <aside class="profile-aside" aria-labelledby="profile-glance">
+        <h2 id="profile-glance">{% t profile.glance_title %}</h2>
+        <dl class="glance">
+          {% for row in me.glance %}
+          <div>
+            <dt>{{ row.label[site.lang] }}</dt>
+            <dd>{{ row.value[site.lang] }}</dd>
+          </div>
+          {% endfor %}
+        </dl>
+
+        <h2 class="profile-aside-title">{% t profile.elsewhere_title %}</h2>
+        <ul class="elsewhere">
+          {% for place in me.elsewhere %}
+          <li><a href="{{ place.url[site.lang] }}" target="_blank" rel="noopener me">{{ place.label[site.lang] }}</a></li>
+          {% endfor %}
+        </ul>
+
+        <p class="profile-updated">{% t profile.updated %}: <time datetime="{{ me.updated | date: '%Y-%m-%d' }}">{% include date.html date=me.updated %}</time></p>
+      </aside>
+
       <div class="profile-main">
         <section aria-labelledby="profile-topics">
           <h2 id="profile-topics">{% t profile.topics_title %}</h2>
@@ -89,27 +110,6 @@ og_type: profile
           </p>
         </section>
       </div>
-
-      <aside class="profile-aside" aria-labelledby="profile-glance">
-        <h2 id="profile-glance">{% t profile.glance_title %}</h2>
-        <dl class="glance">
-          {% for row in me.glance %}
-          <div>
-            <dt>{{ row.label[site.lang] }}</dt>
-            <dd>{{ row.value[site.lang] }}</dd>
-          </div>
-          {% endfor %}
-        </dl>
-
-        <h2 class="profile-aside-title">{% t profile.elsewhere_title %}</h2>
-        <ul class="elsewhere">
-          {% for place in me.elsewhere %}
-          <li><a href="{{ place.url[site.lang] }}" target="_blank" rel="noopener me">{{ place.label[site.lang] }}</a></li>
-          {% endfor %}
-        </ul>
-
-        <p class="profile-updated">{% t profile.updated %}: <time datetime="{{ me.updated | date: '%Y-%m-%d' }}">{% include date.html date=me.updated %}</time></p>
-      </aside>
     </div>
   </div>
 </article>

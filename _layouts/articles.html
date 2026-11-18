@@ -2,7 +2,9 @@
 layout: default
 ---
 
+{%- capture crumb -%}{% t nav.articles %}{%- endcapture %}
 <div class="container">
+  {% include breadcrumbs.html label=crumb %}
   <header class="page-header">
     <h1>{% t articles.title %}</h1>
     <p class="page-lead">{% t articles.intro %}</p>
@@ -11,7 +13,7 @@ layout: default
   <div class="articles-grid">
     {% assign posts = site.posts | sort: "series_order" %}
     {% for post in posts %}
-      {% include article-card.html post=post %}
+      {% include article-card.html post=post level=2 %}
     {% endfor %}
   </div>
 </div>

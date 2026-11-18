@@ -18,6 +18,15 @@ layout: default
 {%- else -%}
   {%- assign share_url = site.url | append: site.baseurl | append: page.url -%}
 {%- endif %}
+{%- comment -%}
+  The articles mark their sections with "###". Right under the title those
+  should be second-level headings, so they are promoted here, unless an article
+  already uses "##".
+{%- endcomment -%}
+{%- assign body = content -%}
+{%- unless content contains "<h2" -%}
+  {%- assign body = content | replace: "<h3", "<h2" | replace: "</h3>", "</h2>" -%}
+{%- endunless %}
 
 <div class="reading-progress" aria-hidden="true"><span class="reading-progress-bar"></span></div>
 
@@ -50,9 +59,9 @@ layout: default
       <a href="{{ site.baseurl_root }}{{ page.url }}" data-lang-link="en" hreflang="en">{% t articles.read_in_english %} &rarr;</a>
     </p>
     {% else %}
-    {% include toc.html html=content %}
+    {% include toc.html html=body %}
     {% endif %}
-    {{ content }}
+    {{ body }}
   </div>
 
   <footer class="article-footer">

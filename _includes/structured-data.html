@@ -7,20 +7,29 @@
   _data/projects.yml and the FAQ from _data/mentorship.yml, the same files the
   visible pages are built from.
 
-  Included by head.html, which sets page_title, page_description_plain,
-  canonical_url, share_image, site_title and site_description.
-  Every value goes through "jsonify", which quotes and escapes it.
+  Two kinds of "@id" are used:
+  - The site, the school and the author each have one id and one address, the
+    same on English and Romanian pages, so a reader that merges nodes by id
+    never sees two answers.
+  - Everything about a single page (the page, its breadcrumb, its article) has
+    an id that starts with that page's own URL.
+
+  Included by head.html, which sets page_title, share_title,
+  page_description_plain, canonical_url, share_image, site_title and
+  site_description. Every value goes through "jsonify", which quotes and
+  escapes it.
 {%- endcomment -%}
 {%- assign me = site.data.person -%}
 {%- assign root = site.url | append: site.baseurl_root -%}
 {%- assign lang_root = site.url | append: site.baseurl -%}
+{%- assign own_url = lang_root | append: page.url -%}
 {%- assign person_id = root | append: me.path | append: "#person" -%}
 {%- assign website_id = root | append: "/#website" -%}
 {%- assign school_id = root | append: "/#school" -%}
-{%- assign page_id = canonical_url | append: "#webpage" -%}
+{%- assign page_id = own_url | append: "#webpage" -%}
+{%- assign site_home = root | append: "/" -%}
 {%- assign home_url = lang_root | append: "/" -%}
 {%- assign articles_url = lang_root | append: "/articles/" -%}
-{%- assign profile_url = lang_root | append: me.path -%}
 {%- capture author_image_alt -%}{% t global.author_image_alt %}{%- endcapture -%}
 {%- capture crumb_home -%}{% t nav.home %}{%- endcapture -%}
 {%- capture crumb_articles -%}{% t nav.articles %}{%- endcapture -%}
@@ -57,6 +66,11 @@
 {%- else -%}
   {%- assign crumb_label = share_title -%}
 {%- endif -%}
+{%- comment -%} Pages kept out of search (the 404 page) show no breadcrumb, so none is declared. {%- endcomment -%}
+{%- assign has_breadcrumb = true -%}
+{%- if kind == "home" or page.noindex -%}
+  {%- assign has_breadcrumb = false -%}
+{%- endif -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -64,7 +78,7 @@
 {%- if kind == "article" and placeholder == false %}
     {
       "@type": "Article",
-      "@id": {{ canonical_url | append: "#article" | jsonify }},
+      "@id": {{ own_url | append: "#article" | jsonify }},
       "headline": {{ page.title | jsonify }},
       "description": {{ page_description_plain | jsonify }},
       "image": {{ share_image | jsonify }},
@@ -73,7 +87,7 @@
       "inLanguage": {{ site.lang | jsonify }},
       "author": { "@id": {{ person_id | jsonify }} },
       "publisher": { "@id": {{ school_id | jsonify }} },
-      "mainEntityOfPage": {{ canonical_url | jsonify }},
+      "mainEntityOfPage": {{ own_url | jsonify }},
       "isPartOf": { "@id": {{ website_id | jsonify }} },
 {%- if page.reading_time %}
       "timeRequired": {{ "PT" | append: page.reading_time | append: "M" | jsonify }},
@@ -87,7 +101,7 @@
     {
       "@type": "ProfilePage",
       "@id": {{ page_id | jsonify }},
-      "url": {{ canonical_url | jsonify }},
+      "url": {{ own_url | jsonify }},
       "name": {{ page_title | jsonify }},
       "description": {{ page_description_plain | jsonify }},
       "inLanguage": {{ site.lang | jsonify }},
@@ -98,34 +112,14 @@
 {%- elsif kind == "mentorship" %}
 {%- capture service_name -%}{% t mentorship.heading %}{%- endcapture %}
     {
-      "@type": "WebPage",
+      "@type": ["WebPage", "FAQPage"],
       "@id": {{ page_id | jsonify }},
-      "url": {{ canonical_url | jsonify }},
+      "url": {{ own_url | jsonify }},
       "name": {{ page_title | jsonify }},
       "description": {{ page_description_plain | jsonify }},
       "inLanguage": {{ site.lang | jsonify }},
       "isPartOf": { "@id": {{ website_id | jsonify }} },
-      "about": { "@id": {{ person_id | jsonify }} }
-    },
-    {
-      "@type": "Service",
-      "@id": {{ canonical_url | append: "#service" | jsonify }},
-      "name": {{ service_name | jsonify }},
-      "serviceType": "AI mentoring",
-      "description": {{ site.data.mentorship.lead[site.lang] | jsonify }},
-      "url": {{ canonical_url | jsonify }},
-      "provider": { "@id": {{ person_id | jsonify }} },
-      "availableLanguage": {{ me.languages | jsonify }},
-      "areaServed": [
-        { "@type": "Country", "name": "Romania" },
-        { "@type": "AdministrativeArea", "name": "European Union" },
-        { "@type": "Place", "name": "Worldwide" }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": {{ canonical_url | append: "#faq" | jsonify }},
-      "inLanguage": {{ site.lang | jsonify }},
+      "about": { "@id": {{ person_id | jsonify }} },
       "mainEntity": [
 {%- for item in site.data.mentorship.faq %}
         {
@@ -136,12 +130,27 @@
 {%- endfor %}
       ]
     },
+    {
+      "@type": "Service",
+      "@id": {{ own_url | append: "#service" | jsonify }},
+      "name": {{ service_name | jsonify }},
+      "serviceType": {{ crumb_label | jsonify }},
+      "description": {{ site.data.mentorship.lead[site.lang] | jsonify }},
+      "url": {{ own_url | jsonify }},
+      "provider": { "@id": {{ person_id | jsonify }} },
+      "availableLanguage": {{ me.languages | jsonify }},
+      "areaServed": [
+        { "@type": "Country", "name": "Romania" },
+        { "@type": "AdministrativeArea", "name": "European Union" },
+        { "@type": "Place", "name": "Worldwide" }
+      ]
+    },
 {%- elsif kind == "collection" %}
 {%- assign listed = site.posts | sort: "series_order" %}
     {
       "@type": "CollectionPage",
       "@id": {{ page_id | jsonify }},
-      "url": {{ canonical_url | jsonify }},
+      "url": {{ own_url | jsonify }},
       "name": {{ page_title | jsonify }},
       "description": {{ page_description_plain | jsonify }},
       "inLanguage": {{ site.lang | jsonify }},
@@ -160,7 +169,7 @@
     {
       "@type": {% if kind == "about" %}"AboutPage"{% else %}"WebPage"{% endif %},
       "@id": {{ page_id | jsonify }},
-      "url": {{ canonical_url | jsonify }},
+      "url": {{ own_url | jsonify }},
       "name": {{ page_title | jsonify }},
       "description": {{ page_description_plain | jsonify }},
       "inLanguage": {{ site.lang | jsonify }},
@@ -168,17 +177,17 @@
       "about": { "@id": {{ school_id | jsonify }} }
     },
 {%- endif %}
-{%- if kind != "home" %}
+{%- if has_breadcrumb %}
     {
       "@type": "BreadcrumbList",
-      "@id": {{ canonical_url | append: "#breadcrumb" | jsonify }},
+      "@id": {{ own_url | append: "#breadcrumb" | jsonify }},
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": {{ crumb_home | jsonify }}, "item": {{ home_url | jsonify }} },
 {%- if kind == "article" %}
         { "@type": "ListItem", "position": 2, "name": {{ crumb_articles | jsonify }}, "item": {{ articles_url | jsonify }} },
-        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ canonical_url | jsonify }} }
+        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ own_url | jsonify }} }
 {%- else %}
-        { "@type": "ListItem", "position": 2, "name": {{ crumb_label | jsonify }}, "item": {{ canonical_url | jsonify }} }
+        { "@type": "ListItem", "position": 2, "name": {{ crumb_label | jsonify }}, "item": {{ own_url | jsonify }} }
 {%- endif %}
       ]
     },
@@ -188,7 +197,7 @@
       "@type": {{ proj.schema_type | jsonify }},
       "@id": {{ proj.schema_id | jsonify }},
       "name": {{ proj.name | jsonify }},
-      "url": {{ proj.url[site.lang] | jsonify }},
+      "url": {{ proj.schema_id | split: "#" | first | jsonify }},
       "description": {{ proj.blurb[site.lang] | jsonify }},
       {% if proj.relation == "author" %}"author"{% else %}"founder"{% endif %}: { "@id": {{ person_id | jsonify }} }
     },
@@ -197,7 +206,7 @@
       "@type": "Organization",
       "@id": {{ school_id | jsonify }},
       "name": {{ site_title | jsonify }},
-      "url": {{ home_url | jsonify }},
+      "url": {{ site_home | jsonify }},
       "description": {{ site_description | jsonify }},
       "logo": {
         "@type": "ImageObject",
@@ -213,7 +222,7 @@
       "name": {{ me.name | jsonify }},
       "givenName": {{ me.given_name | jsonify }},
       "familyName": {{ me.family_name | jsonify }},
-      "url": {{ profile_url | jsonify }},
+      "url": {{ root | append: me.path | jsonify }},
       "image": {
         "@type": "ImageObject",
         "url": {{ root | append: me.image | jsonify }},
@@ -240,10 +249,10 @@
     {
       "@type": "WebSite",
       "@id": {{ website_id | jsonify }},
-      "url": {{ home_url | jsonify }},
+      "url": {{ site_home | jsonify }},
       "name": {{ site_title | jsonify }},
       "description": {{ site_description | jsonify }},
-      "inLanguage": {{ site.lang | jsonify }},
+      "inLanguage": {{ site.languages | jsonify }},
       "publisher": { "@id": {{ school_id | jsonify }} },
       "author": { "@id": {{ person_id | jsonify }} }
     }
