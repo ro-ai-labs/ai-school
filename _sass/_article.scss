@@ -26,6 +26,13 @@
   ol {
     justify-content: center;
   }
+
+  // On a phone the title is right below, in full; repeating it here only wraps.
+  @media (max-width: $bp-mobile) {
+    li[aria-current] {
+      display: none;
+    }
+  }
 }
 
 .article-header {
@@ -219,7 +226,7 @@
   }
 
   ol {
-    margin: $space-md 0 0 1.25rem;
+    margin: $space-md 0 0 1.75rem;
     font-size: 0.95rem;
   }
 

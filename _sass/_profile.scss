@@ -131,8 +131,10 @@
     margin-top: $space-lg;
   }
 
+  // In one column the short facts come first, before the long sections.
   @media (max-width: $bp-tablet) {
     position: static;
+    order: -1;
   }
 }
 

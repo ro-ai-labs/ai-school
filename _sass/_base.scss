@@ -41,7 +41,7 @@ a {
   transition: color 0.2s ease;
 
   &:hover {
-    color: darken($color-accent, 10%);
+    color: $color-accent-dark;
     text-decoration: underline;
   }
 }
@@ -144,10 +144,6 @@ table {
   font-size: 0.9rem;
   font-weight: 600;
   white-space: nowrap;
-}
-
-.page-intro {
-  padding-top: $space-xl;
 }
 
 .about-page {

@@ -44,6 +44,19 @@
 {%- else -%}
   {%- assign kind = "page" -%}
 {%- endif -%}
+
+{%- comment -%} The last breadcrumb step, named as it is on the page. {%- endcomment -%}
+{%- if kind == "profile" -%}
+  {%- assign crumb_label = me.name -%}
+{%- elsif kind == "mentorship" -%}
+  {%- capture crumb_label -%}{% t mentorship.eyebrow %}{%- endcapture -%}
+{%- elsif kind == "about" -%}
+  {%- capture crumb_label -%}{% t nav.about %}{%- endcapture -%}
+{%- elsif kind == "collection" -%}
+  {%- assign crumb_label = crumb_articles -%}
+{%- else -%}
+  {%- assign crumb_label = share_title -%}
+{%- endif -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -105,7 +118,8 @@
       "availableLanguage": {{ me.languages | jsonify }},
       "areaServed": [
         { "@type": "Country", "name": "Romania" },
-        { "@type": "AdministrativeArea", "name": "European Union" }
+        { "@type": "AdministrativeArea", "name": "European Union" },
+        { "@type": "Place", "name": "Worldwide" }
       ]
     },
     {
@@ -163,10 +177,8 @@
 {%- if kind == "article" %}
         { "@type": "ListItem", "position": 2, "name": {{ crumb_articles | jsonify }}, "item": {{ articles_url | jsonify }} },
         { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ canonical_url | jsonify }} }
-{%- elsif kind == "profile" %}
-        { "@type": "ListItem", "position": 2, "name": {{ me.name | jsonify }}, "item": {{ canonical_url | jsonify }} }
 {%- else %}
-        { "@type": "ListItem", "position": 2, "name": {{ share_title | jsonify }}, "item": {{ canonical_url | jsonify }} }
+        { "@type": "ListItem", "position": 2, "name": {{ crumb_label | jsonify }}, "item": {{ canonical_url | jsonify }} }
 {%- endif %}
       ]
     },
